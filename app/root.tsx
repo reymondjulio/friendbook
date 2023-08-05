@@ -1,25 +1,12 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
-import {
-  Link,
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
 import stylesheet from "~/tailwind.css";
 
-export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
-];
+import Header from "./components/layout/header";
 
-const navItems = [
-  { to: "/", text: "Home" },
-  { to: "/friends", text: "Friends" },
-];
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: stylesheet }];
 
 export default function App() {
   return (
@@ -31,18 +18,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <nav>
-          <ul>
-            {navItems.map((navItem) => {
-              return (
-                <li key={navItem.to}>
-                  <Link to={navItem.to}>{navItem.text}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
+        <Header />
         <Outlet />
 
         <ScrollRestoration />
