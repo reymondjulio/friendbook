@@ -4,7 +4,7 @@ import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } fro
 
 import stylesheet from "~/tailwind.css";
 
-import Header from "./components/layout/header";
+import Layout from "./components/layout/layout";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: stylesheet }];
 
@@ -18,8 +18,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Header />
-        <Outlet />
+        <Layout>
+          <Outlet />
+        </Layout>
 
         <ScrollRestoration />
         <Scripts />
