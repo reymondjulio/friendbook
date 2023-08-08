@@ -3,15 +3,17 @@ import { Link } from "@remix-run/react";
 const navItems = [
   { to: "/", text: "Home" },
   { to: "/friends", text: "Friends" },
+  { to: "/register", text: "Register" },
+  { to: "/login", text: "Login" },
 ];
 
 export default function Header() {
   return (
     <header className="w-full bg-blue-500 sticky top-0 z-10">
-      <nav className="container mx-auto flex max-w-6xl py-2 px-4 md:justify-between md:items-center">
-        <h1 className="text-3xl text-white font-bold mr-4">Friendbook</h1>
+      <nav className="container mx-auto flex flex-wrap max-w-6xl py-2 sm:px-14 md:px-12 lg:px-8 justify-center md:justify-between gap-y-4 gap-x-4 items-center">
+        <h1 className="text-3xl text-white font-bold md:mr-4">Friendbook</h1>
 
-        <ul className="flex gap-x-4">
+        <ul className="flex gap-x-4 md:gap-x-8 lg:gap-x-16">
           {navItems.map((navItem) => {
             return (
               <li key={navItem.to}>
@@ -24,7 +26,7 @@ export default function Header() {
         </ul>
 
         <div>
-          <input className="bg-slate-100 rounded-xl focus:outline-none py-1 px-4 text-sm text-center" type="text" placeholder="Search Friends..." />
+          <input className="bg-slate-100 rounded focus:outline-none py-1 px-4 text-sm text-center" type="text" placeholder="Search Friends..." />
         </div>
       </nav>
     </header>
