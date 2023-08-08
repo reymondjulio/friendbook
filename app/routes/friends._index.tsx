@@ -4,6 +4,7 @@ import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
 import dataFriends from "~/data/friends.json";
+import Button from "~/components/ui/button";
 
 export const loader = async () => {
   return json({ friends: dataFriends });
@@ -14,21 +15,22 @@ export default function Route() {
 
   return (
     <div>
-      <h1>Friends List</h1>
-      <ul className="grid grid-cols-4">
+      <ul className="max-w-6xl mx-auto grid grid-cols-2 justify-center items-center md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-4 py-4">
         {friends.map((friend) => {
           return (
-            <Link key={friend.id} to={`/friends/${friend.username}`}>
-              <li className="flex flex-col" key={friend.id}>
+            <Link className="block hover:opacity-80 justify-self-center self-center" key={friend.id} to={`/friends/${friend.username}`}>
+              <li className="max-w-fit h-fit rounded bg-white" key={friend.id}>
                 <div>
-                  <img src={friend.avatarURL} alt={friend.name} width={10} height={10} />
+                  <img className="w-60 h-60 rounded object-cover overflow-hidden" src={friend.avatarURL} alt={friend.name} />
                 </div>
-                <div>
-                  <h2>
-                    {friend.name} (@{friend.username})
-                  </h2>
-                  <p>{friend.age} years old</p>
-                  <p>{friend.mutualFriends.length}</p>
+                <div className="p-2 text-center">
+                  <h2 className="text-lg font-semibold">{friend.name}</h2>
+                  <p className="text-slate-80">{friend.age} years old</p>
+                  <p className="text-gray-500">{friend.mutualFriends.length} mutual friends</p>
+                </div>
+                <div className="flex flex-col p-2 gap-y-2">
+                  <Button variant="primary">Confirm</Button>
+                  <Button variant="secondary">Delete</Button>
                 </div>
               </li>
             </Link>
