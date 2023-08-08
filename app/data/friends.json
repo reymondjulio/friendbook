@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Reymond Julio",
     "username": "reymond",
-    "avatarURL": "/avatars/reymond.jpg",
+    "avatarURL": "./public/images/avatars/reymond.jpg",
     "coverURL": "/cover/reymond-cover.jpg",
     "age": 26,
     "mutualFriends": [
@@ -11,19 +11,19 @@
         "id": 4,
         "name": "Caroline Elizabeth",
         "username": "caroline",
-        "avatarURL": "/avatars/caroline.jpg"
+        "avatarURL": "./public/images/avatars/caroline.jpg"
       },
       {
         "id": 5,
         "name": "Daniel William",
         "username": "daniel",
-        "avatarURL": "/avatars/daniel.jpg"
+        "avatarURL": "./public/images/avatars/daniel.jpg"
       },
       {
         "id": 7,
         "name": "Jessica Lyn",
         "username": "jessica",
-        "avatarURL": "/avatars/jessica.jpg"
+        "avatarURL": "./public/images/avatars/jessica.jpg"
       }
     ],
     "isConfirmed": true
@@ -32,7 +32,7 @@
     "id": 2,
     "name": "M Haidar Hanif",
     "username": "haidar",
-    "avatarURL": "/avatars/haidar.jpg",
+    "avatarURL": "./public/images/avatars/haidar.jpg",
     "coverURL": "/cover/haidar-cover.jpg",
     "age": 30,
     "mutualFriends": [
@@ -40,19 +40,19 @@
         "id": 1,
         "name": "Reymond Julio",
         "username": "reymond",
-        "avatarURL": "/avatars/caroline.jpg"
+        "avatarURL": "./public/images/avatars/reymond.jpg"
       },
       {
         "id": 5,
         "name": "Christopher Kevin",
         "username": "christopher",
-        "avatarURL": "/avatars/christopher.jpg"
+        "avatarURL": "./public/images/avatars/christopher.jpg"
       },
       {
         "id": 4,
         "name": "Caroline Elizabeth",
         "username": "caroline",
-        "avatarURL": "/avatars/caroline.jpg"
+        "avatarURL": "./public/images/avatars/caroline.jpg"
       }
     ],
     "isConfirmed": false
@@ -61,7 +61,7 @@
     "id": 3,
     "name": "Christopher Kevin",
     "username": "christopher",
-    "avatarURL": "/avatars/christopher.jpg",
+    "avatarURL": "./public/images/avatars/christopher.jpg",
     "coverURL": "/cover/christopher-cover.jpg",
     "age": 29,
     "mutualFriends": [
@@ -69,19 +69,19 @@
         "id": 4,
         "name": "Caroline Elizabeth",
         "username": "caroline",
-        "avatarURL": "/avatars/caroline.jpg"
+        "avatarURL": "./public/images/avatars/caroline.jpg"
       },
       {
         "id": 5,
         "name": "Daniel William",
         "username": "daniel",
-        "avatarURL": "/avatars/daniel.jpg"
+        "avatarURL": "./public/images/avatars/daniel.jpg"
       },
       {
         "id": 7,
         "name": "Jessica Lyn",
         "username": "jessica",
-        "avatarURL": "/avatars/jessica.jpg"
+        "avatarURL": "./public/images/avatars/jessica.jpg"
       }
     ],
     "isConfirmed": false
@@ -90,7 +90,7 @@
     "id": 4,
     "name": "Caroline Elizabeth",
     "username": "caroline",
-    "avatarURL": "/avatars/caroline.jpg",
+    "avatarURL": "./public/images/avatars/caroline.jpg",
     "coverURL": "/cover/caroline-cover.jpg",
     "age": 25,
     "mutualFriends": [
@@ -98,19 +98,19 @@
         "id": 2,
         "name": "M Haidar Hanif",
         "username": "haidar",
-        "avatarURL": "/avatars/haidar.jpg"
+        "avatarURL": "./public/images/avatars/haidar.jpg"
       },
       {
         "id": 1,
         "name": "Reymond Julio",
         "username": "reymond",
-        "avatarURL": "/avatars/reymond.jpg"
+        "avatarURL": "./public/images/avatars/reymond.jpg"
       },
       {
         "id": 7,
         "name": "Jessica Lyn",
         "username": "jessica",
-        "avatarURL": "/avatars/jessica.jpg"
+        "avatarURL": "./public/images/avatars/jessica.jpg"
       }
     ],
     "isConfirmed": true
@@ -119,7 +119,7 @@
     "id": 5,
     "name": "Daniel William",
     "username": "daniel",
-    "avatarURL": "/avatars/daniel.jpg",
+    "avatarURL": "./public/images/avatars/daniel.jpg",
     "coverURL": "/cover/daniel-cover.jpg",
     "age": 25,
     "mutualFriends": [
@@ -127,19 +127,19 @@
         "id": 8,
         "name": "Kelly Marie",
         "username": "kelly",
-        "avatarURL": "/avatars/kelly.jpg"
+        "avatarURL": "./public/images/avatars/kelly.jpg"
       },
       {
         "id": 2,
         "name": "M Haidar Hanif",
         "username": "haidar",
-        "avatarURL": "/avatars/haidar.jpg"
+        "avatarURL": "./public/images/avatars/haidar.jpg"
       },
       {
         "id": 6,
         "name": "Victoria Grace",
         "username": "victoria",
-        "avatarURL": "/avatars/victoria.jpg"
+        "avatarURL": "./public/images/avatars/victoria.jpg"
       }
     ],
     "isConfirmed": true
@@ -148,7 +148,7 @@
     "id": 6,
     "name": "Victoria Grace",
     "username": "victoria",
-    "avatarURL": "/avatars/victoria.jpg",
+    "avatarURL": "./public/images/avatars/victoria.jpg",
     "coverURL": "/cover/victoria-cover.jpg",
     "age": 28,
     "mutualFriends": [
@@ -156,19 +156,19 @@
         "id": 5,
         "name": "Daniel William",
         "username": "daniel",
-        "avatarURL": "/avatars/daniel.jpg"
+        "avatarURL": "./public/images/avatars/daniel.jpg"
       },
       {
         "id": 8,
         "name": "Kelly Marie",
         "username": "kelly",
-        "avatarURL": "/avatars/kelly.jpg"
+        "avatarURL": "./public/images/avatars/kelly.jpg"
       },
       {
         "id": 7,
         "name": "Jessica Lyn",
         "username": "jessica",
-        "avatarURL": "/avatars/jessica.jpg"
+        "avatarURL": "./public/images/avatars/jessica.jpg"
       }
     ],
     "isConfirmed": false
@@ -177,7 +177,7 @@
     "id": 7,
     "name": "Jessica Lyn",
     "username": "jessica",
-    "avatarURL": "/avatars/jessica.jpg",
+    "avatarURL": "./public/images/avatars/jessica.jpg",
     "coverURL": "/cover/jessica-cover.jpg",
     "age": 26,
     "mutualFriends": [
@@ -185,19 +185,19 @@
         "id": 3,
         "name": "Christopher Kevin",
         "username": "christopher",
-        "avatarURL": "/avatars/christopher.jpg"
+        "avatarURL": "./public/images/avatars/christopher.jpg"
       },
       {
         "id": 1,
         "name": "Reymond Julio",
         "username": "reymond",
-        "avatarURL": "/avatars/reymond.jpg"
+        "avatarURL": "./public/images/avatars/reymond.jpg"
       },
       {
         "id": 7,
         "name": "Caroline Elizabeth",
         "username": "caroline",
-        "avatarURL": "/avatars/caroline.jpg"
+        "avatarURL": "./public/images/avatars/caroline.jpg"
       }
     ],
     "isConfirmed": true
@@ -206,7 +206,7 @@
     "id": 8,
     "name": "Kelly Marie",
     "username": "kelly",
-    "avatarURL": "/avatars/kelly.jpg",
+    "avatarURL": "./public/images/avatars/kelly.jpg",
     "coverURL": "/cover/kelly-cover.jpg",
     "age": 26,
     "mutualFriends": [
@@ -214,22 +214,21 @@
         "id": 2,
         "name": "M Haidar Hanif",
         "username": "haidar",
-        "avatarURL": "/avatars/haidar.jpg"
+        "avatarURL": "./public/images/avatars/haidar.jpg"
       },
       {
         "id": 5,
         "name": "Daniel William",
         "username": "daniel",
-        "avatarURL": "/avatars/daniel.jpg"
+        "avatarURL": "./public/images/avatars/daniel.jpg"
       },
       {
         "id": 6,
         "name": "Victoria Grace",
         "username": "victoria",
-        "avatarURL": "/avatars/victoria.jpg"
+        "avatarURL": "./public/images/avatars/victoria.jpg"
       }
     ],
     "isConfirmed": false
   }
 ]
-
