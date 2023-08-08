@@ -15,16 +15,23 @@ export default function Route() {
   return (
     <div>
       <h1>Friends List</h1>
-      <ul>
+      <ul className="grid grid-cols-4">
         {friends.map((friend) => {
           return (
-            <li key={friend.id}>
-              <Link to={`/friends/${friend.username}`}>
-                <h2>
-                  {friend.name} (@{friend.username})
-                </h2>
-              </Link>
-            </li>
+            <Link key={friend.id} to={`/friends/${friend.username}`}>
+              <li className="flex flex-col" key={friend.id}>
+                <div>
+                  <img src={friend.avatarURL} alt={friend.name} width={10} height={10} />
+                </div>
+                <div>
+                  <h2>
+                    {friend.name} (@{friend.username})
+                  </h2>
+                  <p>{friend.age} years old</p>
+                  <p>{friend.mutualFriends.length}</p>
+                </div>
+              </li>
+            </Link>
           );
         })}
       </ul>
