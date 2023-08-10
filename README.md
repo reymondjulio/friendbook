@@ -8,7 +8,9 @@
 - Tailwind CSS
 - React
 - Remix
-- ...
+- Prisma ORM
+- PostgreSQL on Render.com / MySQL on PlanetScale
+- Vercel
 
 ## Development
 
