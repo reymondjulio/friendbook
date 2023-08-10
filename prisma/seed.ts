@@ -3,8 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Seed your database here
-  // You can do something like this:
+  await prisma.user.deleteMany();
   await prisma.user.createMany({
     data: [
       {
