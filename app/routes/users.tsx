@@ -1,16 +1,22 @@
-import type { LoaderArgs } from "@remix-run/node";
+import { json, type LoaderArgs } from "@remix-run/node";
 import type { V2_MetaFunction } from "@remix-run/react";
 import { useLoaderData } from "@remix-run/react";
 
-export const meta: V2_MetaFunction = () => [
-  // your meta here
-];
+import { prisma } from "~/db.server";
+
+export const meta: V2_MetaFunction = () => [{ title: "All users" }];
 
 export const loader = async ({ request }: LoaderArgs) => {
-  return null;
+  const users = await prisma.user.findMany();
+
+  return json({ users });
 };
 
 export default function RouteComponent() {
-  const data = useLoaderData<typeof loader>();
-  return <div />;
+  const { users } = useLoaderData<typeof loader>();
+  return (
+    <div>
+      <pre>{JSON.stringify(users, null, 2)}</pre>
+    </div>
+  );
 }
