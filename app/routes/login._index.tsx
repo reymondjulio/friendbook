@@ -5,7 +5,7 @@ import Button from "~/components/ui/button";
 
 export default function Login() {
   return (
-    <div className="container mx-auto w-full h-full max-w-6xl h-screen p-4 gap-x-6 gap-y-6 flex flex-wrap justify-center lg:justify-between items-start lg:items-center">
+    <div className="container mx-auto w-full max-w-6xl h-screen p-4 gap-x-6 gap-y-6 flex flex-wrap justify-center lg:justify-between items-start lg:items-center">
       <div className="max-w-lg w-full space-y-4 text-center lg:text-left self-center  lg:mb-44">
         <h1 className="text-4xl sm:text-6xl text-blue-500 font-bold">Friendbook</h1>
         <p className="text-2xl sm:text-3xl font-semibold">Connect with friends and the world around you on Friendbook.</p>
