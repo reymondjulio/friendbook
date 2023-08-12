@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
@@ -22,4 +23,5 @@ model User {
 
   friend   User?   @relation("friends", fields: [friendId], references: [id])
   friendId String?
+ 
 }
