@@ -27,7 +27,7 @@ export default function Login() {
           </Form>
 
           <div className="flex px-12 pb-8">
-            <Link to="/register" className="bg-green-500 hover:bg-green-400 py-2 rounded text-white text-sm font-bold w-full text-center self-center">
+            <Link to="/signup" className="bg-green-500 hover:bg-green-400 py-2 rounded text-white text-sm font-bold w-full text-center self-center">
               Create New Account
             </Link>
           </div>
