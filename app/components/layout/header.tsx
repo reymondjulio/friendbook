@@ -3,6 +3,7 @@ import { Link } from "@remix-run/react";
 const navItems = [
   { to: "/", text: "Home" },
   { to: "/friends", text: "Friends" },
+  { to: "/users", text: "Users" },
   { to: "/signup", text: "SignUp" },
   { to: "/login", text: "Login" },
 ];
