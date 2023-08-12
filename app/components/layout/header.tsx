@@ -3,7 +3,7 @@ import { Link } from "@remix-run/react";
 const navItems = [
   { to: "/", text: "Home" },
   { to: "/friends", text: "Friends" },
-  { to: "/register", text: "Register" },
+  { to: "/signup", text: "SignUp" },
   { to: "/login", text: "Login" },
 ];
 
@@ -26,7 +26,12 @@ export default function Header() {
         </ul>
 
         <div>
-          <input className="bg-slate-100 rounded focus:outline-none py-1 px-4 text-sm text-center" type="text" placeholder="Search Friends..." />
+          <form action="">
+            <label className="hidden" htmlFor="search">
+              search
+            </label>
+            <input className="bg-slate-100 rounded focus:outline-none py-1 px-4 text-sm text-center" type="search" placeholder="Search Friends..." />
+          </form>
         </div>
       </nav>
     </header>
