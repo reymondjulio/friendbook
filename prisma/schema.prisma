@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -21,7 +21,8 @@ model User {
 
   friends User[] @relation(name: "friends")
 
-  friend   User?   @relation("friends", fields: [friendId], references: [id])
+  friend   User?   @relation("friends", fields: [friendId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   friendId String?
- 
+
+  @@index([friendId])
 }
