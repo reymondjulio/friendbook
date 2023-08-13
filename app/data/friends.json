@@ -4,7 +4,7 @@
     "name": "Reymond Julio",
     "username": "reymond",
     "avatarURL": "/images/avatars/reymond.jpg",
-    "coverURL": "/cover/reymond-cover.jpg",
+    "coverURL": "/images/cover/reymond-cover.jpg",
     "age": 26,
     "mutualFriends": [
       {
@@ -33,7 +33,7 @@
     "name": "M Haidar Hanif",
     "username": "haidar",
     "avatarURL": "/images/avatars/haidar.jpg",
-    "coverURL": "/cover/haidar-cover.jpg",
+    "coverURL": "/images/cover/haidar-cover.jpg",
     "age": 30,
     "mutualFriends": [
       {
@@ -62,7 +62,7 @@
     "name": "Christopher Kevin",
     "username": "christopher",
     "avatarURL": "/images/avatars/christopher.jpg",
-    "coverURL": "/cover/christopher-cover.jpg",
+    "coverURL": "/images/cover/christopher-cover.jpg",
     "age": 29,
     "mutualFriends": [
       {
@@ -91,7 +91,7 @@
     "name": "Caroline Elizabeth",
     "username": "caroline",
     "avatarURL": "/images/avatars/caroline.jpg",
-    "coverURL": "/cover/caroline-cover.jpg",
+    "coverURL": "/images/cover/caroline-cover.jpg",
     "age": 25,
     "mutualFriends": [
       {
@@ -120,7 +120,7 @@
     "name": "Daniel William",
     "username": "daniel",
     "avatarURL": "/images/avatars/daniel.jpg",
-    "coverURL": "/cover/daniel-cover.jpg",
+    "coverURL": "/images/cover/daniel-cover.jpg",
     "age": 25,
     "mutualFriends": [
       {
@@ -149,7 +149,7 @@
     "name": "Victoria Grace",
     "username": "victoria",
     "avatarURL": "/images/avatars/victoria.jpg",
-    "coverURL": "/cover/victoria-cover.jpg",
+    "coverURL": "/images/cover/victoria-cover.jpg",
     "age": 28,
     "mutualFriends": [
       {
@@ -178,7 +178,7 @@
     "name": "Jessica Lyn",
     "username": "jessica",
     "avatarURL": "/images/avatars/jessica.jpg",
-    "coverURL": "/cover/jessica-cover.jpg",
+    "coverURL": "/images/cover/jessica-cover.jpg",
     "age": 26,
     "mutualFriends": [
       {
@@ -207,7 +207,7 @@
     "name": "Kelly Marie",
     "username": "kelly",
     "avatarURL": "/images/avatars/kelly.jpg",
-    "coverURL": "/cover/kelly-cover.jpg",
+    "coverURL": "/images/cover/kelly-cover.jpg",
     "age": 26,
     "mutualFriends": [
       {
