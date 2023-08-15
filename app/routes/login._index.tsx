@@ -1,7 +1,9 @@
-import { Form, Link } from "@remix-run/react";
+import type { ActionProps } from "@remix-run/react";
+import { Form } from "@remix-run/react";
 import Label from "~/components/ui/label";
 import Input from "~/components/ui/input";
 import Button from "~/components/ui/button";
+import ButtonLink from "~/components/ui/button-link";
 
 export default function Login() {
   return (
@@ -27,12 +29,21 @@ export default function Login() {
           </Form>
 
           <div className="flex px-12 pb-8">
-            <Link to="/signup" className="bg-green-500 hover:bg-green-400 py-2 rounded text-white text-sm font-bold w-full text-center self-center">
-              Create New Account
-            </Link>
+            <ButtonLink to="/signup">Create New Account</ButtonLink>
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+export async function action({ request }): ActionProps {
+  const formData = await request.formData();
+
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  console.log({ email, password });
+
+  return null;
 }
