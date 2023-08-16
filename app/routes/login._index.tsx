@@ -1,9 +1,9 @@
-import type { ActionProps } from "@remix-run/react";
 import { Form } from "@remix-run/react";
 import Label from "~/components/ui/label";
 import Input from "~/components/ui/input";
 import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
+import type { ActionArgs } from "@remix-run/node";
 
 export default function Login() {
   return (
@@ -37,7 +37,7 @@ export default function Login() {
   );
 }
 
-export async function action({ request }): ActionProps {
+export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
 
   const email = formData.get("email");
