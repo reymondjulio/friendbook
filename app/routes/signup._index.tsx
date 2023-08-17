@@ -5,8 +5,8 @@ export default function SignUp() {
     <div className="w-full h-screen flex justify-center p-6">
       <div className="container mx-auto w-full h-fit max-w-md border border-blue-200 rounded">
         <h2 className="mt-6 text-center text-2xl sm:text-3xl font-extrabold text-blue-500">SignUp an Account</h2>
-        <form className="mt-8 space-y-6 p-4">
-          <div className="rounded-md shadow-sm space-y-6">
+        <form className="mt-2 space-y-4 p-4">
+          <div className="rounded-md shadow-sm space-y-4">
             <div className="space-y-1">
               <label htmlFor="name">Name:</label>
               <input
