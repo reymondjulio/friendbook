@@ -1,9 +1,18 @@
-import { json, type V2_MetaFunction } from "@remix-run/node";
+import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import dataFriends from "~/data/friends.json";
+
 import { EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
-export const loader = async () => {
-  return json({ friends: dataFriends });
+import { prisma } from "~/db.server";
+
+export const loader = async ({ request }: LoaderArgs) => {
+  const posts = await prisma.post.findMany({
+    include: {
+      user: true,
+    },
+  });
+
+  return json({ posts });
 };
 
 export const meta: V2_MetaFunction = () => {
@@ -11,18 +20,19 @@ export const meta: V2_MetaFunction = () => {
 };
 
 export default function Index() {
-  const { friends } = useLoaderData<typeof loader>();
+  const { posts } = useLoaderData<typeof loader>();
   return (
     <div className="container mx-auto max-w-6xl p-6">
+      {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
       <ul>
-        {friends.map((friend) => {
+        {posts.map((post) => {
           return (
-            <li className="max-w-2xl mx-auto h-fit rounded bg-white mb-6" key={friend.id}>
+            <li className="max-w-2xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
               <div className="flex gap-x-2 p-2">
-                <img className="w-10 h-10 rounded-full" src={friend.avatarURL} alt={friend.name} />
+                {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
                 <div className="mr-auto">
-                  <p className="font-semibold text-sm">{friend.name}</p>
-                  <p className="text-sm">19h</p>
+                  <p className="font-semibold text-sm">{post.user.name}</p>
+                  <p className="text-sm">{post.createdAt}</p>
                 </div>
                 <div className="flex gap-x-2">
                   <button>
@@ -34,7 +44,8 @@ export default function Index() {
                 </div>
               </div>
 
-              <img className="w-full object-cover" src={friend.coverURL} alt={friend.name} />
+              <p>{post.text}</p>
+
               <div className="flex justify-around p-4">
                 <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
                   <span>
