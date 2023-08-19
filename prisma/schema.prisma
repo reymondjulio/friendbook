@@ -24,5 +24,23 @@ model User {
   friend   User?   @relation("friends", fields: [friendId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   friendId String?
 
+  posts Post[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@index([friendId])
+}
+
+model Post {
+  id   String @id @default(cuid())
+  text String
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
