@@ -15,14 +15,16 @@ export const loader = async ({ request }: LoaderArgs) => {
 export default function RouteComponent() {
   const { users } = useLoaderData<typeof loader>();
   return (
-    <div className="container mx-auto max-w-6xl p-6 min-h-screen">
-      <ul className="grid grid-cols-4 gap-y-4">
+    <div className="container mx-auto max-w-6xl px-6 py-4 min-h-screen">
+      <ul className="grid grid-cols-4 gap-x-6 gap-y-6">
         {users.map((user) => {
           return (
-            <li key={user.id} className="max-w-fit h-fit bg-white">
+            <li key={user.id} className="max-w-fit h-fit">
               <Link to="/username">{user.avatarURL && <img className="w-60 h-60 rounded object-cover overflow-hidden" src={user.avatarURL} alt={user.name} />}</Link>
-              <p className="text-center font-semibold p-4">{user.name}</p>
-              <p className="text-center font-light">@{user.username}</p>
+              <div className=" bg-white p-4 space-y-2">
+                <p className="text-center font-semibold">{user.name}</p>
+                <p className="text-center font-light">@{user.username}</p>
+              </div>
             </li>
           );
         })}

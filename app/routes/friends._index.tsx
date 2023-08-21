@@ -15,7 +15,7 @@ export default function Route() {
 
   return (
     <div>
-      <ul className="max-w-6xl mx-auto grid grid-cols-2 justify-center items-center md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-4 py-4">
+      <ul className="max-w-6xl mx-auto grid grid-cols-2 justify-center items-center md:grid-cols-3 lg:grid-cols-4 gap-y-4 px-2 py-4">
         {friends.map((friend) => {
           return (
             <li className="max-w-fit h-fit rounded bg-white justify-self-center self-center" key={friend.id}>
