@@ -1,7 +1,11 @@
-import { UserPlusIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/24/solid";
+import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon } from "@heroicons/react/24/solid";
+
 import { json, type LoaderArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 import Button from "~/components/ui/button";
+import ButtonLink from "~/components/ui/button-link";
+import Input from "~/components/ui/input";
+import Label from "~/components/ui/label";
 import { prisma } from "~/db.server";
 
 export const loader = async ({ params }: LoaderArgs) => {
@@ -16,8 +20,34 @@ export default function RouteComponent() {
   const { user } = useLoaderData<typeof loader>();
   if (!user) {
     return (
-      <div>
-        <h1>Sorry, user not found</h1>
+      <div className="container mx-auto max-w-6xl min-h-screen pt-16 md:pt-24">
+        <div className="container mx-auto max-w-2xl bg-white flex border border-blue-500 mb-4">
+          <span className="bg-blue-500 px-3 py-2">
+            <InformationCircleIcon className="w-8 h-8 text-white"></InformationCircleIcon>
+          </span>
+          <div className="py-2">
+            <h2 className="pl-4 text-lg">You must log in to continue.</h2>
+          </div>
+        </div>
+
+        <div className="container mx-auto max-w-2xl bg-white">
+          <h1 className="text-center pt-6 text-2xl">Log in to Facebook</h1>
+          <Form className="flex flex-col px-8 pt-8 pb-4 items-center" method="POST">
+            <div className="w-full mb-4">
+              <Label htmlFor="email" />
+              <Input id="email" name="email" type="text" autoComplete="email" required placeholder="Email or Phone Number" />
+            </div>
+            <div className="w-full mb-4">
+              <Label htmlFor="password" />
+              <Input id="password" name="password" type="text" autoComplete="password" required placeholder="Password" />
+            </div>
+
+            <Button>Log in</Button>
+          </Form>
+          <div className="flex px-8 pb-8">
+            <ButtonLink to="/signup">Create New Account</ButtonLink>
+          </div>
+        </div>
       </div>
     );
   }
