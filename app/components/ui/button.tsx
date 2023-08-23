@@ -6,7 +6,7 @@ export default function Button({ variant = "primary", children, ...props }: Butt
   return (
     <button
       className={`py-2 px-4 flex items-center justify-center gap-x-2 rounded w-full self-center ${
-        (variant === "primary" && `bg-blue-500 text-white text-sm sm:text-md hover:bg-blue-400`) || (variant === "secondary" && `bg-slate-300 text-black text-sm sm:text-md hover:bg-slate-200`)
+        (variant === "primary" && `bg-blue-500 text-white font-bold text-sm sm:text-md hover:bg-blue-400`) || (variant === "secondary" && `bg-slate-300 text-black text-sm sm:text-md hover:bg-slate-200`)
       }`}
       {...props}
     >
