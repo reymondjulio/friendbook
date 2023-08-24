@@ -44,7 +44,7 @@ export default function Index() {
                 </div>
               </div>
 
-              <p>{post.text}</p>
+              <p className="pl-14">{post.text}</p>
 
               <div className="flex justify-around p-4">
                 <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
