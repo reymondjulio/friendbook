@@ -2,7 +2,7 @@ import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon, EllipsisH
 
 import { json, type LoaderArgs } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
-import type { Key, ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react";
+
 import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
 import Input from "~/components/ui/input";
@@ -12,7 +12,13 @@ import { prisma } from "~/db.server";
 export const loader = async ({ params }: LoaderArgs) => {
   const user = await prisma.user.findUnique({
     where: { username: params.username },
-    include: { posts: true },
+    include: {
+      posts: {
+        include: {
+          user: true,
+        },
+      },
+    },
   });
   return json({ user });
 };
@@ -73,59 +79,52 @@ export default function RouteComponent() {
       </div>
 
       <ul>
-        {posts.map(
-          (post: {
-            id: Key | null | undefined;
-            user: { avatarURL: string | undefined; name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | null | undefined };
-            createdAt: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined;
-            text: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined;
-          }) => {
-            return (
-              <li className="max-w-2xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
-                <div className="flex gap-x-2 p-2">
-                  {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
-                  <div className="mr-auto">
-                    <p className="font-semibold text-sm">{post.user.name}</p>
-                    <p className="text-sm">{post.createdAt}</p>
-                  </div>
-                  <div className="flex gap-x-2">
-                    <button>
-                      <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
-                    </button>
-                    <button>
-                      <XMarkIcon className="w-6 h-6"></XMarkIcon>
-                    </button>
-                  </div>
+        {user.posts.map((post) => {
+          return (
+            <li className="max-w-2xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
+              <div className="flex gap-x-2 p-2">
+                {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
+                <div className="mr-auto">
+                  <p className="font-semibold text-sm">{post.user.name}</p>
+                  <p className="text-sm">{post.createdAt}</p>
                 </div>
-
-                <p className="pl-14">{post.text}</p>
-
-                <div className="flex justify-around p-4">
-                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
-                    <span>
-                      <HandThumbUpIcon className="w-5 h-5 text-slate-500"></HandThumbUpIcon>
-                    </span>
-                    <p className="text-sm">Like</p>
+                <div className="flex gap-x-2">
+                  <button>
+                    <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
                   </button>
-
-                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
-                    <span>
-                      <ChatBubbleLeftIcon className="w-5 h-5 text-slate-500"></ChatBubbleLeftIcon>
-                    </span>
-                    <p className="text-sm">Comment</p>
-                  </button>
-
-                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
-                    <span>
-                      <ShareIcon className="w-5 h-5 text-slate-500"></ShareIcon>
-                    </span>
-                    <p className="text-sm">Share</p>
+                  <button>
+                    <XMarkIcon className="w-6 h-6"></XMarkIcon>
                   </button>
                 </div>
-              </li>
-            );
-          }
-        )}
+              </div>
+
+              <p className="pl-14">{post.text}</p>
+
+              <div className="flex justify-around p-4">
+                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                  <span>
+                    <HandThumbUpIcon className="w-5 h-5 text-slate-500"></HandThumbUpIcon>
+                  </span>
+                  <p className="text-sm">Like</p>
+                </button>
+
+                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                  <span>
+                    <ChatBubbleLeftIcon className="w-5 h-5 text-slate-500"></ChatBubbleLeftIcon>
+                  </span>
+                  <p className="text-sm">Comment</p>
+                </button>
+
+                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                  <span>
+                    <ShareIcon className="w-5 h-5 text-slate-500"></ShareIcon>
+                  </span>
+                  <p className="text-sm">Share</p>
+                </button>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
