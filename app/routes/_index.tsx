@@ -22,7 +22,7 @@ export const meta: V2_MetaFunction = () => {
 export default function Index() {
   const { posts } = useLoaderData<typeof loader>();
   return (
-    <div className="container mx-auto max-w-6xl p-6">
+    <div className="container mx-auto max-w-6xl min-h-screen p-6">
       {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
       <ul>
         {posts.map((post) => {
