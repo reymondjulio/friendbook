@@ -1,4 +1,4 @@
-import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon, EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
+import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon, EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon, VideoCameraIcon, PhotoIcon, FaceSmileIcon } from "@heroicons/react/24/solid";
 
 import { json, type LoaderArgs } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
@@ -60,10 +60,10 @@ export default function RouteComponent() {
   }
 
   return (
-    <div className="container mx-auto max-w-4xl h-screen flex flex-col items-start ">
+    <div className="container mx-auto max-w-4xl flex flex-col items-start ">
       {user.coverURL && <img className="w-full h-96 bg-cover object-cover rounded-md mb-4" src={user.coverURL} alt={user.name} />}
 
-      <div className="container mx-auto max-w-4xl flex p-4 py-6 items-start bg-white">
+      <div className="container mx-auto max-w-4xl flex p-4 py-6 items-start bg-white mb-6">
         {user.avatarURL && <img className="w-32 h-32 rounded-full bg-cover" src={user.avatarURL} alt={user.name} />}
         <div className="px-4 space-y-2 mr-auto">
           <h3 className="text-3xl font-bold text-black">{user.name}</h3>
@@ -78,54 +78,78 @@ export default function RouteComponent() {
         </div>
       </div>
 
-      <ul>
-        {user.posts.map((post) => {
-          return (
-            <li className="max-w-2xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
-              <div className="flex gap-x-2 p-2">
-                {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
-                <div className="mr-auto">
-                  <p className="font-semibold text-sm">{post.user.name}</p>
-                  <p className="text-sm">{post.createdAt}</p>
+      <div className="container mx-auto max-w-4xl flex">
+        <ul className="mr-6">
+          {user.posts.map((post) => {
+            return (
+              <li className="max-w-4xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
+                <div className="flex gap-x-2 p-2">
+                  {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
+                  <div className="mr-auto">
+                    <p className="font-semibold text-sm">{post.user.name}</p>
+                    <p className="text-sm">{post.createdAt}</p>
+                  </div>
+                  <div className="flex gap-x-2">
+                    <button>
+                      <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
+                    </button>
+                    <button>
+                      <XMarkIcon className="w-6 h-6"></XMarkIcon>
+                    </button>
+                  </div>
                 </div>
-                <div className="flex gap-x-2">
-                  <button>
-                    <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
+
+                <p className="pl-14">{post.text}</p>
+
+                <div className="flex justify-around p-4">
+                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                    <span>
+                      <HandThumbUpIcon className="w-5 h-5 text-slate-500"></HandThumbUpIcon>
+                    </span>
+                    <p className="text-sm">Like</p>
                   </button>
-                  <button>
-                    <XMarkIcon className="w-6 h-6"></XMarkIcon>
+
+                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                    <span>
+                      <ChatBubbleLeftIcon className="w-5 h-5 text-slate-500"></ChatBubbleLeftIcon>
+                    </span>
+                    <p className="text-sm">Comment</p>
+                  </button>
+
+                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                    <span>
+                      <ShareIcon className="w-5 h-5 text-slate-500"></ShareIcon>
+                    </span>
+                    <p className="text-sm">Share</p>
                   </button>
                 </div>
-              </div>
+              </li>
+            );
+          })}
+        </ul>
 
-              <p className="pl-14">{post.text}</p>
-
-              <div className="flex justify-around p-4">
-                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
-                  <span>
-                    <HandThumbUpIcon className="w-5 h-5 text-slate-500"></HandThumbUpIcon>
-                  </span>
-                  <p className="text-sm">Like</p>
-                </button>
-
-                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
-                  <span>
-                    <ChatBubbleLeftIcon className="w-5 h-5 text-slate-500"></ChatBubbleLeftIcon>
-                  </span>
-                  <p className="text-sm">Comment</p>
-                </button>
-
-                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
-                  <span>
-                    <ShareIcon className="w-5 h-5 text-slate-500"></ShareIcon>
-                  </span>
-                  <p className="text-sm">Share</p>
-                </button>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+        <div className="container max-w-full bg-white h-fit p-2 rounded">
+          <div className="flex mb-4">
+            {user.avatarURL && <img className="w-11 h-11 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
+            <button className="w-full rounded-full text-left py-2 px-4 text-xl bg-slate-200 text-gray-500 font-semibold">What's on your mind?</button>
+          </div>
+          <hr className="mb-4" />
+          <div className="flex justify-around p-1">
+            <button className="flex items-center gap-x-1 hover:bg-slate-200 px-2 py-1">
+              <VideoCameraIcon className="w-5 h-5 text-red-500"></VideoCameraIcon>
+              <p className="font-semibold text-gray-500">Live video</p>
+            </button>
+            <button className="flex items-center gap-x-1 hover:bg-slate-200 px-2 py-1">
+              <PhotoIcon className="w-5 h-5 text-green-500"></PhotoIcon>
+              <p className="font-semibold text-gray-500">Photo/video</p>
+            </button>
+            <button className="flex items-center gap-x-1 hover:bg-slate-200 px-2 py-1 text-gray-500">
+              <FaceSmileIcon className="w-5 h-5 text-yellow-300"></FaceSmileIcon>
+              <p className="font-semibold">Feeling/activity</p>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
