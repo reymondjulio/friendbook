@@ -128,7 +128,7 @@ export default function RouteComponent() {
           })}
         </ul>
 
-        <div className="container max-w-full bg-white h-fit p-2 rounded">
+        <div className="container max-w-full bg-white h-fit p-3 rounded">
           <div className="flex mb-4">
             {user.avatarURL && <img className="w-11 h-11 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
             <button className="w-full rounded-full text-left py-2 px-4 text-lg md:text-xl bg-slate-200 text-gray-500 font-semibold">What's on your mind?</button>
