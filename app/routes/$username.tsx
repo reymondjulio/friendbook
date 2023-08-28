@@ -60,17 +60,17 @@ export default function RouteComponent() {
   }
 
   return (
-    <div className="container mx-auto max-w-4xl flex flex-col items-start ">
+    <div className="container mx-auto max-w-4xl min-h-screen flex flex-col items-start pb-4">
       {user.coverURL && <img className="w-full h-96 bg-cover object-cover rounded-md mb-4" src={user.coverURL} alt={user.name} />}
 
-      <div className="container mx-auto max-w-4xl flex p-4 py-6 items-start bg-white mb-6">
+      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row justify-center items-center px-4 py-6 bg-white mb-6">
         {user.avatarURL && <img className="w-32 h-32 rounded-full bg-cover" src={user.avatarURL} alt={user.name} />}
-        <div className="px-4 space-y-2 mr-auto">
-          <h3 className="text-3xl font-bold text-black">{user.name}</h3>
+        <div className="px-4 space-y-2 mb-4 md:mr-auto">
+          <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">{user.name}</h3>
         </div>
         <div className="flex gap-x-2 h-8 self-center">
           <Button variant="secondary">
-            <UserPlusIcon className="w-4 h-4 " /> Friend
+            <UserPlusIcon className="w-4 h-4" /> Friend
           </Button>
           <Button variant="primary">
             <ChatBubbleLeftRightIcon className="w-4 h-4" /> Message
@@ -78,8 +78,8 @@ export default function RouteComponent() {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-4xl flex">
-        <ul className="mr-6">
+      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row ">
+        <ul className="md:mr-6">
           {user.posts.map((post) => {
             return (
               <li className="max-w-4xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
@@ -131,21 +131,21 @@ export default function RouteComponent() {
         <div className="container max-w-full bg-white h-fit p-2 rounded">
           <div className="flex mb-4">
             {user.avatarURL && <img className="w-11 h-11 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
-            <button className="w-full rounded-full text-left py-2 px-4 text-xl bg-slate-200 text-gray-500 font-semibold">What's on your mind?</button>
+            <button className="w-full rounded-full text-left py-2 px-4 text-lg md:text-xl bg-slate-200 text-gray-500 font-semibold">What's on your mind?</button>
           </div>
           <hr className="mb-4" />
-          <div className="flex justify-around p-1">
-            <button className="flex items-center gap-x-1 hover:bg-slate-200 px-2 py-1">
-              <VideoCameraIcon className="w-5 h-5 text-red-500"></VideoCameraIcon>
-              <p className="font-semibold text-gray-500">Live video</p>
+          <div className="flex justify-around gap-x-1">
+            <button className="flex items-center justify-center gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+              <VideoCameraIcon className="w-3 h-3 md:w-5 md:h-5 text-red-500"></VideoCameraIcon>
+              <p className="font-semibold text-xs md:text-sm text-gray-500">Live video</p>
             </button>
-            <button className="flex items-center gap-x-1 hover:bg-slate-200 px-2 py-1">
-              <PhotoIcon className="w-5 h-5 text-green-500"></PhotoIcon>
-              <p className="font-semibold text-gray-500">Photo/video</p>
+            <button className="flex items-center justify-center gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+              <PhotoIcon className="w-3 h-3 md:w-5 md:h-5 text-green-500"></PhotoIcon>
+              <p className="font-semibold text-xs md:text-sm text-gray-500">Photo/video</p>
             </button>
-            <button className="flex items-center gap-x-1 hover:bg-slate-200 px-2 py-1 text-gray-500">
-              <FaceSmileIcon className="w-5 h-5 text-yellow-300"></FaceSmileIcon>
-              <p className="font-semibold">Feeling/activity</p>
+            <button className="flex items-center justify-center gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+              <FaceSmileIcon className="w-3 h-3 md:w-5 md:h-5 text-yellow-300"></FaceSmileIcon>
+              <p className="font-semibold text-xs md:text-sm text-gray-500">Feeling/activity</p>
             </button>
           </div>
         </div>
