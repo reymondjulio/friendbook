@@ -7,6 +7,7 @@ import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
 import Input from "~/components/ui/input";
 import Label from "~/components/ui/label";
+import * as Dialog from "@radix-ui/react-dialog";
 import { prisma } from "~/db.server";
 
 export const loader = async ({ params }: LoaderArgs) => {
@@ -131,7 +132,53 @@ export default function RouteComponent() {
         <div className="container max-w-full bg-white h-fit p-3 rounded">
           <div className="flex mb-4">
             {user.avatarURL && <img className="w-11 h-11 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
-            <button className="w-full rounded-full text-left py-2 px-4 text-lg md:text-xl bg-slate-200 text-gray-500 font-semibold">What's on your mind?</button>
+            <button className="w-full rounded-full text-left py-2 px-4 text-lg md:text-xl bg-slate-200 text-gray-500 font-semibold">
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <button className="text-gray-600 inline-flex h-[35px] items-center justify-center rounded-[10px] bg-slate-200 px-[15px] font-semibold leading-none focus:outline-none">What's on your mind?</button>
+                </Dialog.Trigger>
+                <Dialog.Portal>
+                  <Dialog.Overlay className="bg-blackA9 data-[state=open]:animate-overlayShow fixed inset-0" />
+                  <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+                    <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">Create post</Dialog.Title>
+                    <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal"></Dialog.Description>
+                    <fieldset className="mb-[15px] flex items-center gap-5">
+                      <label className="text-black w-[90px] text-right text-[15px]" htmlFor="name">
+                        Name
+                      </label>
+                      <input
+                        className="text-black focus:outline-blue-500 outline-blue-500 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] border border-blue-500"
+                        id="name"
+                        placeholder="name"
+                      />
+                    </fieldset>
+                    <fieldset className="mb-[15px] flex items-center gap-5">
+                      <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="message">
+                        Message
+                      </label>
+                      <textarea
+                        className="text-black text-left focus:outline-blue-500 outline-blue-500 inline-flex h-[100px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] border border-blue-500"
+                        id="message"
+                        placeholder="message"
+                      />
+                    </fieldset>
+                    <div className="mt-[25px] flex justify-end">
+                      <Dialog.Close asChild>
+                        <button className="bg-green4 text-white hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none border border-blue-500 bg-blue-500">
+                          Post
+                        </button>
+                      </Dialog.Close>
+                    </div>
+                    <Dialog.Close asChild>
+                      <button
+                        className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+                        aria-label="Close"
+                      ></button>
+                    </Dialog.Close>
+                  </Dialog.Content>
+                </Dialog.Portal>
+              </Dialog.Root>
+            </button>
           </div>
           <hr className="mb-4" />
           <div className="flex justify-around gap-x-1">
