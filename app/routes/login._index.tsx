@@ -25,7 +25,7 @@ export default function Login() {
               <Input id="password" name="password" type="text" autoComplete="password" required placeholder="Password" />
             </div>
 
-            <Button>Log in</Button>
+            <Button type="submit">Log in</Button>
           </Form>
 
           <div className="flex px-12 pb-8">
