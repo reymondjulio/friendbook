@@ -44,9 +44,9 @@ export default function Index() {
                 </div>
               </div>
 
-              <p className="pl-14">{post.text}</p>
+              <p className="pl-3">{post.text}</p>
 
-              <div className="flex justify-around p-4">
+              <div className="flex justify-between p-4">
                 <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
                   <span>
                     <HandThumbUpIcon className="w-5 h-5 text-slate-500"></HandThumbUpIcon>
