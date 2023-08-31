@@ -79,12 +79,12 @@ export default function RouteComponent() {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row ">
+      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row">
         <ul className="md:mr-6">
           {user.posts.map((post) => {
             return (
-              <li className="max-w-4xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
-                <div className="flex gap-x-2 p-2">
+              <li className="max-w-4xl mx-auto h-fit rounded bg-white mb-6 p-4" key={post.id}>
+                <div className="flex gap-x-2 items-start mb-2 md:p-2">
                   {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
                   <div className="mr-auto">
                     <p className="font-semibold text-sm">{post.user.name}</p>
@@ -100,28 +100,30 @@ export default function RouteComponent() {
                   </div>
                 </div>
 
-                <p className="pl-14">{post.text}</p>
+                <p className="mb-2 md:ml-2 text-sm">{post.text}</p>
 
-                <div className="flex justify-around p-4">
-                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                <hr className="mb-4" />
+
+                <div className="flex justify-between items-center">
+                  <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
                     <span>
-                      <HandThumbUpIcon className="w-5 h-5 text-slate-500"></HandThumbUpIcon>
+                      <HandThumbUpIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></HandThumbUpIcon>
                     </span>
-                    <p className="text-sm">Like</p>
+                    <p className="text-xs">Like</p>
                   </button>
 
-                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                  <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
                     <span>
-                      <ChatBubbleLeftIcon className="w-5 h-5 text-slate-500"></ChatBubbleLeftIcon>
+                      <ChatBubbleLeftIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ChatBubbleLeftIcon>
                     </span>
-                    <p className="text-sm">Comment</p>
+                    <p className="text-xs">Comment</p>
                   </button>
 
-                  <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                  <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
                     <span>
-                      <ShareIcon className="w-5 h-5 text-slate-500"></ShareIcon>
+                      <ShareIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ShareIcon>
                     </span>
-                    <p className="text-sm">Share</p>
+                    <p className="text-xs">Share</p>
                   </button>
                 </div>
               </li>
@@ -129,77 +131,75 @@ export default function RouteComponent() {
           })}
         </ul>
 
-        <div className="container max-w-full bg-white h-fit p-3 rounded">
-          <div className="flex mb-4">
-            {user.avatarURL && <img className="w-11 h-11 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
-            <Form method="POST">
-              <button className="w-full rounded-full text-left py-2 px-4 text-lg md:text-xl bg-slate-200 text-gray-500 font-semibold">
-                <Dialog.Root>
-                  <Dialog.Trigger asChild>
-                    <button className="text-gray-600 inline-flex h-[35px] items-center justify-center rounded-[10px] bg-slate-200 px-[15px] font-semibold leading-none focus:outline-none">What's on your mind?</button>
-                  </Dialog.Trigger>
-                  <Dialog.Portal>
-                    <Dialog.Overlay className="bg-blackA9 data-[state=open]:animate-overlayShow fixed inset-0" />
-                    <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-                      <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">Create post</Dialog.Title>
-                      <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal"></Dialog.Description>
-                      <div className="mb-[15px] flex items-center gap-5">
-                        <label className="text-black w-[90px] text-right text-[15px]" htmlFor="name">
-                          Name
-                        </label>
-                        <input
-                          className="text-black focus:outline-blue-500 outline-blue-500 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] border border-blue-500"
-                          id="name"
-                          placeholder="name"
-                        />
-                      </div>
-                      <div className="mb-[15px] flex items-center gap-5">
-                        <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="message">
-                          Message
-                        </label>
-                        <textarea
-                          className="text-black text-left focus:outline-blue-500 outline-blue-500 inline-flex h-[100px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] border border-blue-500"
-                          id="message"
-                          placeholder="message"
-                        />
-                      </div>
-                      <div className="mt-[25px] flex justify-end">
-                        <Dialog.Close asChild>
-                          <button
-                            type="submit"
-                            className="bg-green4 text-white hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none border border-blue-500 bg-blue-500"
-                          >
-                            Post
-                          </button>
-                        </Dialog.Close>
-                      </div>
+        <div className="container flex flex-col justify-center max-w-full bg-white h-fit px-5 pt-5 pb-4 md:pb-9 rounded">
+          <div className="flex mb-4 items-center">
+            {user.avatarURL && <img className="w-12 h-12 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
+            <Form className="w-full" method="POST">
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <button className="w-full hover:bg-slate-100 rounded-full text-gray-600 p-4 text-left bg-slate-200 font-semibold leading-none focus:outline-none">What's on your mind?</button>
+                </Dialog.Trigger>
+                <Dialog.Portal>
+                  <Dialog.Overlay className="bg-blackA9 data-[state=open]:animate-overlayShow fixed inset-0" />
+                  <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+                    <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">Create post</Dialog.Title>
+                    <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal"></Dialog.Description>
+                    <div className="mb-[15px] flex items-center gap-5">
+                      <label className="text-black w-[90px] text-right text-[15px]" htmlFor="name">
+                        Name
+                      </label>
+                      <input
+                        className="text-black focus:outline-blue-500 outline-blue-500 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] border border-blue-500"
+                        id="name"
+                        placeholder="name"
+                      />
+                    </div>
+                    <div className="mb-[15px] flex items-center gap-5">
+                      <label className="text-violet11 w-[90px] text-right text-[15px]" htmlFor="message">
+                        Message
+                      </label>
+                      <textarea
+                        className="text-black text-left focus:outline-blue-500 outline-blue-500 inline-flex h-[100px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] border border-blue-500"
+                        id="message"
+                        placeholder="message"
+                      />
+                    </div>
+                    <div className="mt-[25px] flex justify-end">
                       <Dialog.Close asChild>
                         <button
-                          className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
-                          aria-label="Close"
-                        ></button>
+                          type="submit"
+                          className="bg-green4 text-white hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none border border-blue-500 bg-blue-500"
+                        >
+                          Post
+                        </button>
                       </Dialog.Close>
-                    </Dialog.Content>
-                  </Dialog.Portal>
-                </Dialog.Root>
-              </button>
+                    </div>
+                    <Dialog.Close asChild>
+                      <button
+                        className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+                        aria-label="Close"
+                      ></button>
+                    </Dialog.Close>
+                  </Dialog.Content>
+                </Dialog.Portal>
+              </Dialog.Root>
             </Form>
           </div>
 
           <hr className="mb-4" />
 
-          <div className="flex justify-around gap-x-1">
-            <button className="flex items-center justify-center gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+          <div className="flex justify-between items-center gap-x-1 ">
+            <button className="flex items-center justify-center md:mt-4 gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
               <VideoCameraIcon className="w-3 h-3 md:w-5 md:h-5 text-red-500"></VideoCameraIcon>
-              <p className="font-semibold text-xs md:text-sm text-gray-500">Live video</p>
+              <p className="font-semibold text-xs sm:text-sm text-gray-500">Live video</p>
             </button>
-            <button className="flex items-center justify-center gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+            <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
               <PhotoIcon className="w-3 h-3 md:w-5 md:h-5 text-green-500"></PhotoIcon>
-              <p className="font-semibold text-xs md:text-sm text-gray-500">Photo/video</p>
+              <p className="font-semibold text-xs sm:text-sm text-gray-500">Photo/video</p>
             </button>
-            <button className="flex items-center justify-center gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+            <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
               <FaceSmileIcon className="w-3 h-3 md:w-5 md:h-5 text-yellow-300"></FaceSmileIcon>
-              <p className="font-semibold text-xs md:text-sm text-gray-500">Feeling/activity</p>
+              <p className="font-semibold text-xs sm:text-sm text-gray-500">Feeling/activity</p>
             </button>
           </div>
         </div>
