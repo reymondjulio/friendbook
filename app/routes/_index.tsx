@@ -4,6 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 
 import { EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
 import { prisma } from "~/db.server";
+import { formatDate } from "~/utils/date";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const posts = await prisma.post.findMany({
@@ -32,7 +33,7 @@ export default function Index() {
                 {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
                 <div className="mr-auto">
                   <p className="font-semibold text-sm">{post.user.name}</p>
-                  <p className="text-sm">{post.createdAt}</p>
+                  <p className="text-sm">{formatDate(post.createdAt)}</p>
                 </div>
                 <div className="flex gap-x-2">
                   <button>
