@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="w-full">
-      <div className="bg-slate-100 flex justify-center items-end w-full border-t-2 border-blue-200 p-4">
-        <p className="text-center">
-          All rights reserved <span>&copy; </span> Reymond Julio 2023.
+    <footer className="w-full flex flex-wrap">
+      <div className="bg-blue-600 flex justify-center items-end w-full p-4">
+        <p className="text-center text-white text-md md:text-lg">
+          All rights reserved <span>&copy; </span> Friendbook by Reymond Julio 2023.
         </p>
       </div>
     </footer>
