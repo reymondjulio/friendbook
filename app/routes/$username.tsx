@@ -18,6 +18,9 @@ export const loader = async ({ params }: LoaderArgs) => {
         include: {
           user: true,
         },
+        orderBy: {
+          createdAt: "desc",
+        },
       },
     },
   });
@@ -65,7 +68,7 @@ export default function RouteComponent() {
       {user.coverURL && <img className="w-full h-96 bg-cover object-cover rounded-md mb-4" src={user.coverURL} alt={user.name} />}
 
       <div className="container mx-auto max-w-4xl flex flex-col md:flex-row justify-center items-center px-4 py-6 bg-white mb-6">
-        {user.avatarURL && <img className="w-32 h-32 rounded-full bg-cover" src={user.avatarURL} alt={user.name} />}
+        {user.avatarURL && <img className="w-32 h-32 rounded-full bg-cover object-cover" src={user.avatarURL} alt={user.name} />}
         <div className="px-4 space-y-2 mb-4 md:mr-auto">
           <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">{user.name}</h3>
         </div>
@@ -192,9 +195,12 @@ export default function RouteComponent() {
 export async function action({ request }: ActionArgs) {
   const formData = await request.formData();
 
-  const message = formData.get("message");
+  const message = formData.get("message")?.toString();
+  if (!message) return null;
 
-  console.log({ message });
+  await prisma.post.create({
+    data: { text: message, user: { connect: { username: "reymond" } } },
+  });
 
   return null;
 }
