@@ -2,22 +2,36 @@ import { Link } from "@remix-run/react";
 import Button from "~/components/ui/button";
 export default function SignUp() {
   return (
-    <div className="w-full h-screen flex justify-center p-6">
-      <div className="container mx-auto w-full h-fit max-w-md border border-blue-200 rounded">
-        <h2 className="mt-6 text-center text-2xl sm:text-3xl font-extrabold text-blue-500">SignUp an Account</h2>
+    <div className="w-full min-h-screen flex justify-center p-6">
+      <div className="container mx-auto w-full h-fit max-w-md bg-white shadow-md border rounded-lg">
+        <h2 className="mt-2 text-center text-2xl sm:text-3xl font-semibold text-gray-700">Create a new account</h2>
         <form className="mt-2 space-y-4 p-4">
           <div className="rounded-md shadow-sm space-y-4">
-            <div className="space-y-1">
-              <label htmlFor="name">Name:</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Name"
-              />
+            <div className="flex gap-x-2">
+              <div className="space-y-1 basis-1/2">
+                <label htmlFor="firstname">First name:</label>
+                <input
+                  id="firstname"
+                  name="firstname"
+                  type="text"
+                  required
+                  className="rounded-lg w-full relative block px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="First name"
+                />
+              </div>
+              <div className="space-y-1 basis-1/2">
+                <label htmlFor="lastname">Last name:</label>
+                <input
+                  id="lastname"
+                  name="lastname"
+                  type="text"
+                  required
+                  className="rounded-lg relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Last name"
+                />
+              </div>
             </div>
+
             <div className="space-y-1">
               <label htmlFor="email-address">Email:</label>
               <input
@@ -26,7 +40,7 @@ export default function SignUp() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="rounded-lg relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
@@ -38,7 +52,7 @@ export default function SignUp() {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="rounded-lg relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
@@ -50,7 +64,7 @@ export default function SignUp() {
                 name="birthday"
                 type="date"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="rounded-lg relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Birthday"
               />
             </div>
@@ -61,7 +75,7 @@ export default function SignUp() {
                 id="gender"
                 name="gender"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="rounded-lg relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 defaultValue=""
               >
                 <option value="" disabled>
