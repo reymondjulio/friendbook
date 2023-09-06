@@ -2,8 +2,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Form } from "@remix-run/react";
 import Button from "~/components/ui/button";
 
-
-
 export default function DialogPosts() {
   return (
     <Dialog.Root>
@@ -24,7 +22,9 @@ export default function DialogPosts() {
               <textarea className="text-black text-left outline-none p-0 inline-flex h-[100px] w-full flex-1 items-center justify-center rounded-lg text-lg" id="message" placeholder="What's on your mind?" name="message" />
             </div>
             <div className="mt-[25px] flex justify-end">
-              <Button type="submit">Post</Button>
+              <Button variant="secondary" type="submit">
+                Post
+              </Button>
             </div>
             <Dialog.Close asChild>
               <button
