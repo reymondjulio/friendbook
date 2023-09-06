@@ -7,7 +7,7 @@ import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
 import Input from "~/components/ui/input";
 import Label from "~/components/ui/label";
-import * as Dialog from "@radix-ui/react-dialog";
+import DialogPosts from "~/components/ui/dialog";
 import { prisma } from "~/db.server";
 
 export const loader = async ({ params }: LoaderArgs) => {
@@ -73,119 +73,121 @@ export default function RouteComponent() {
           <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">{user.name}</h3>
         </div>
         <div className="flex gap-x-2 h-8 self-center">
-          <Button variant="secondary">
+          <Button variant="tertiary">
             <UserPlusIcon className="w-4 h-4" /> Friend
           </Button>
-          <Button variant="primary">
+          <Button variant="secondary">
             <ChatBubbleLeftRightIcon className="w-4 h-4" /> Message
           </Button>
         </div>
       </div>
 
-      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row">
-        <ul className="md:mr-6">
-          {user.posts.map((post) => {
-            return (
-              <li className="max-w-4xl mx-auto h-fit rounded bg-white mb-6 p-4" key={post.id}>
-                <div className="flex gap-x-2 items-start mb-2 md:p-2">
-                  {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
-                  <div className="mr-auto">
-                    <p className="font-semibold text-sm">{post.user.name}</p>
-                    <p className="text-sm">{post.createdAt}</p>
-                  </div>
-                  <div className="flex gap-x-2">
-                    <button>
-                      <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
-                    </button>
-                    <button>
-                      <XMarkIcon className="w-6 h-6"></XMarkIcon>
-                    </button>
-                  </div>
-                </div>
-
-                <p className="mb-2 md:ml-2 text-sm">{post.text}</p>
-
-                <hr className="mb-4" />
-
-                <div className="flex justify-between items-center">
-                  <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
-                    <span>
-                      <HandThumbUpIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></HandThumbUpIcon>
-                    </span>
-                    <p className="text-xs">Like</p>
-                  </button>
-
-                  <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
-                    <span>
-                      <ChatBubbleLeftIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ChatBubbleLeftIcon>
-                    </span>
-                    <p className="text-xs">Comment</p>
-                  </button>
-
-                  <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
-                    <span>
-                      <ShareIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ShareIcon>
-                    </span>
-                    <p className="text-xs">Share</p>
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className="container flex flex-col justify-center max-w-full bg-white h-fit px-5 pt-5 pb-4 md:pb-9 rounded">
-          <div className="flex mb-4 items-center">
-            {user.avatarURL && <img className="w-12 h-12 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
-
-            <Dialog.Root>
-              <Dialog.Trigger asChild>
-                <button className="w-full hover:bg-slate-100 rounded-full text-gray-600 p-4 text-left bg-slate-200 font-semibold leading-none focus:outline-none">What's on your mind?</button>
-              </Dialog.Trigger>
-              <Dialog.Portal>
-                <Dialog.Overlay className="bg-blackA9 data-[state=open]:animate-overlayShow fixed inset-0" />
-                <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-                  <Form className="w-full" method="POST">
-                    <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">Create post</Dialog.Title>
-                    <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal"></Dialog.Description>
-
-                    <div className="mb-[15px] flex items-center gap-5">
-                      <label className="text-violet11 w-[90px] text-right text-[15px] hidden" htmlFor="message">
-                        Message
-                      </label>
-                      <textarea className="text-black text-left outline-none p-0 inline-flex h-[100px] w-full flex-1 items-center justify-center rounded-lg text-lg" id="message" placeholder="What's on your mind?" name="message" />
-                    </div>
-                    <div className="mt-[25px] flex justify-end">
-                      <Button type="submit">Post</Button>
-                    </div>
-                    <Dialog.Close asChild>
-                      <button
-                        className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
-                        aria-label="Close"
-                      ></button>
-                    </Dialog.Close>
-                  </Form>
-                </Dialog.Content>
-              </Dialog.Portal>
-            </Dialog.Root>
+      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row gap-x-4">
+        <div className="flex flex-col gap-y-4 basis-1/2">
+          <div className="container max-w-full h-fit flex flex-col gap-y-4 px-4 py-6 text-center bg-white">
+            <h1 className="text-black text-left text-xl font-bold">Intro</h1>
+            <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add bio</div>
+            <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add details</div>
+            <div className="w-full h-auto bg-slate-200 text-gray-700 font-semibold text-md hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add hobbies</div>
+            <div className="w-full h-auto text-gray-700 font-semibold bg-slate-200 text-md hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add featured</div>
           </div>
 
-          <hr className="mb-4" />
+          <div className="container max-w-full h-fit bg-white px-4 py-6">
+            <div className="flex justify-between items-start">
+              <h1 className="text-black text-left text-xl font-bold mb-4">Photos</h1>
+              <p className="text-blue-500 text-md cursor-pointer px-2 py-1 hover:bg-slate-200 rounded-lg">See all photos</p>
+            </div>
 
-          <div className="flex justify-between items-center gap-x-1 ">
-            <button className="flex items-center justify-center md:mt-4 gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
-              <VideoCameraIcon className="w-3 h-3 md:w-5 md:h-5 text-red-500"></VideoCameraIcon>
-              <p className="font-semibold text-xs sm:text-sm text-gray-500">Live video</p>
-            </button>
-            <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
-              <PhotoIcon className="w-3 h-3 md:w-5 md:h-5 text-green-500"></PhotoIcon>
-              <p className="font-semibold text-xs sm:text-sm text-gray-500">Photo/video</p>
-            </button>
-            <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
-              <FaceSmileIcon className="w-3 h-3 md:w-5 md:h-5 text-yellow-300"></FaceSmileIcon>
-              <p className="font-semibold text-xs sm:text-sm text-gray-500">Feeling/activity</p>
-            </button>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer rounded-l-lg p-1">1</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">2</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">3</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-l-lg p-1">4</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">5</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">6</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-l-lg p-1">7</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">8</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">9</div>
+            </div>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-y-4 basis-2/3">
+          <div className="container flex flex-col justify-center max-w-full bg-white h-fit px-5 pt-5 pb-4 md:pb-9 rounded">
+            <div className="flex mb-4 items-center">
+              {user.avatarURL && <img className="w-12 h-12 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
+
+              <DialogPosts></DialogPosts>
+            </div>
+
+            <hr className="mb-4" />
+
+            <div className="flex justify-between items-center gap-x-1 ">
+              <button className="flex items-center justify-center md:mt-4 gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+                <VideoCameraIcon className="w-3 h-3 md:w-5 md:h-5 text-red-500"></VideoCameraIcon>
+                <p className="font-semibold text-xs sm:text-sm text-gray-500">Live video</p>
+              </button>
+              <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+                <PhotoIcon className="w-3 h-3 md:w-5 md:h-5 text-green-500"></PhotoIcon>
+                <p className="font-semibold text-xs sm:text-sm text-gray-500">Photo/video</p>
+              </button>
+              <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
+                <FaceSmileIcon className="w-3 h-3 md:w-5 md:h-5 text-yellow-300"></FaceSmileIcon>
+                <p className="font-semibold text-xs sm:text-sm text-gray-500">Feeling/activity</p>
+              </button>
+            </div>
+          </div>
+
+          <ul>
+            {user.posts.map((post) => {
+              return (
+                <li className="flex flex-col mb-4 max-w-4xl mx-auto h-fit rounded bg-white p-4" key={post.id}>
+                  <div className="flex gap-x-2 items-start mb-2 md:p-2">
+                    {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
+                    <div className="mr-auto">
+                      <p className="font-semibold text-sm">{post.user.name}</p>
+                      <p className="text-sm">{post.createdAt}</p>
+                    </div>
+                    <div className="flex gap-x-2">
+                      <button>
+                        <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
+                      </button>
+                      <button>
+                        <XMarkIcon className="w-6 h-6"></XMarkIcon>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p className="mb-2 md:ml-2 text-sm">{post.text}</p>
+
+                  <hr className="mb-4" />
+
+                  <div className="flex justify-between items-center">
+                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
+                      <span>
+                        <HandThumbUpIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></HandThumbUpIcon>
+                      </span>
+                      <p className="text-xs">Like</p>
+                    </button>
+
+                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
+                      <span>
+                        <ChatBubbleLeftIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ChatBubbleLeftIcon>
+                      </span>
+                      <p className="text-xs">Comment</p>
+                    </button>
+
+                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
+                      <span>
+                        <ShareIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ShareIcon>
+                      </span>
+                      <p className="text-xs">Share</p>
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </div>
