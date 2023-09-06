@@ -13,19 +13,21 @@ export default function Login() {
         <p className="text-2xl sm:text-3xl font-semibold">Connect with friends and the world around you on Friendbook.</p>
       </div>
 
-      <div className="max-w-sm w-full ring-0 lg:mb-24">
+      <div className="max-w-sm w-full ring-0 shadow-md lg:mb-24">
         <div className="bg-white">
           <Form method="POST" className="flex flex-col gap-y-4 px-12 pt-10 mb-4">
-            <div className="w-full">
+            <div>
               <Label htmlFor="email" />
-              <Input id="email" name="email" type="text" autoComplete="email" required placeholder="Email or Phone Number" />
+              <Input id="email" name="email" type="text" autoComplete="email" required placeholder="Email address" />
             </div>
             <div>
               <Label htmlFor="password" />
               <Input id="password" name="password" type="text" autoComplete="password" required placeholder="Password" />
             </div>
 
-            <Button type="submit">Log in</Button>
+            <Button variant="secondary" type="submit">
+              Log in
+            </Button>
           </Form>
 
           <div className="flex px-12 pb-8">
