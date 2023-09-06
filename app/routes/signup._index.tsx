@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import ButtonLink from "~/components/ui/button-link";
 import Button from "~/components/ui/button";
 import Input from "~/components/ui/input";
 import Label from "~/components/ui/label";
@@ -51,9 +51,7 @@ export default function SignUp() {
             <Button type="submit">Sign Up</Button>
           </div>
           <div>
-            <Link to="/login" className="block bg-green-500 hover:bg-green-400 py-2 rounded text-white text-sm font-bold w-full text-center">
-              Login
-            </Link>
+            <ButtonLink to="/login">Login</ButtonLink>
           </div>
         </form>
       </div>
