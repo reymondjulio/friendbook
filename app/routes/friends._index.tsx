@@ -31,10 +31,10 @@ export default function Route() {
               </div>
               <div className="flex flex-col p-2 gap-y-2">
                 <Form method="PUT">
-                  <Button variant="primary">Confirm</Button>
+                  <Button variant="secondary">Confirm</Button>
                 </Form>
                 <Form method="PUT">
-                  <Button variant="secondary">Delete</Button>
+                  <Button variant="tertiary">Delete</Button>
                 </Form>
               </div>
             </li>
