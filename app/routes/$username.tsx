@@ -83,7 +83,7 @@ export default function RouteComponent() {
       </div>
 
       <div className="container mx-auto max-w-4xl flex flex-col md:flex-row gap-x-4">
-        <div className="flex flex-col gap-y-4 basis-1/2">
+        <div className="flex flex-col gap-y-4 basis-1/2 mb-4 md:mb-0">
           <div className="container max-w-full h-fit flex flex-col gap-y-4 px-4 py-6 text-center bg-white">
             <h1 className="text-black text-left text-xl font-bold">Intro</h1>
             <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add bio</div>
