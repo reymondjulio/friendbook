@@ -20,7 +20,7 @@ export default function RouteComponent() {
         {users.map((user) => {
           return (
             <li key={user.id} className="max-w-fit h-fit">
-              <Link to="/username">{user.avatarURL && <img className="w-60 h-60 rounded object-cover overflow-hidden" src={user.avatarURL} alt={user.name} />}</Link>
+              <Link to="/username">{user.avatarURL && <img className="w-60 h-60 rounded-t-lg object-cover overflow-hidden bg-white hover:opacity-80" src={user.avatarURL} alt={user.name} />}</Link>
               <div className=" bg-white p-4 space-y-2">
                 <p className="text-center font-semibold">{user.name}</p>
                 <p className="text-center font-light">@{user.username}</p>
