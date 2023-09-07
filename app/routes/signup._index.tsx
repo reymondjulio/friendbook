@@ -36,7 +36,13 @@ export default function SignUp() {
 
             <div className="space-y-1">
               <Label htmlFor="gender">Gender:</Label>
-              <select id="gender" name="gender" required className="rounded-lg relative block w-full px-3 py-2 border text-gray-700 placeholder-gray-400 focus:outline-indigo-200 focus:z-10 sm:text-sm md:text-md" defaultValue="">
+              <select
+                id="gender"
+                name="gender"
+                required
+                className="rounded-lg relative block w-full px-3 py-2 border border-slate-400 text-gray-700 placeholder-gray-400 focus:outline-blue-200 focus:z-10 sm:text-sm md:text-md"
+                defaultValue=""
+              >
                 <option value="" disabled>
                   Select your gender
                 </option>
