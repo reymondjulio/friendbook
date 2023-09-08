@@ -24,12 +24,26 @@ model User {
   friend   User?   @relation("friends", fields: [friendId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   friendId String?
 
-  posts Post[]
+  posts    Post[]
+  password UserPassword?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([friendId])
+}
+
+model UserPassword {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId String @unique
+
+  hash String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
 
 model Post {
