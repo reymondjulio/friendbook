@@ -12,20 +12,23 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
+  id String @id @default(cuid())
+
   name      String
   username  String    @unique
   birthDate DateTime?
   avatarURL String?
   coverURL  String?
 
+  email    String        @unique
+  password UserPassword?
+
   friends User[] @relation(name: "friends")
 
   friend   User?   @relation("friends", fields: [friendId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   friendId String?
 
-  posts    Post[]
-  password UserPassword?
+  posts Post[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
