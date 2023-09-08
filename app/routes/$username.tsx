@@ -1,4 +1,4 @@
-import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon, EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon, VideoCameraIcon, PhotoIcon, FaceSmileIcon } from "@heroicons/react/24/solid";
+import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon, EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
 
 import { json, type LoaderArgs, type ActionArgs } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
@@ -7,7 +7,7 @@ import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
 import Input from "~/components/ui/input";
 import Label from "~/components/ui/label";
-import DialogPosts from "~/components/ui/dialog";
+import DialogNewPost from "~/components/shared/dialog-new-post";
 import { prisma } from "~/db.server";
 
 export const loader = async ({ params }: LoaderArgs) => {
@@ -113,31 +113,7 @@ export default function RouteComponent() {
         </div>
 
         <div className="flex flex-col gap-y-4 basis-2/3">
-          <div className="container flex flex-col justify-center max-w-full bg-white h-fit px-5 pt-5 pb-4 md:pb-9 rounded">
-            <div className="flex mb-4 items-center">
-              {user.avatarURL && <img className="w-12 h-12 rounded-full bg-cover mr-2" src={user.avatarURL} alt={user.name} />}
-
-              <DialogPosts></DialogPosts>
-            </div>
-
-            <hr className="mb-4" />
-
-            <div className="flex justify-between items-center gap-x-1 ">
-              <button className="flex items-center justify-center md:mt-4 gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
-                <VideoCameraIcon className="w-3 h-3 md:w-5 md:h-5 text-red-500"></VideoCameraIcon>
-                <p className="font-semibold text-xs sm:text-sm text-gray-500">Live video</p>
-              </button>
-              <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
-                <PhotoIcon className="w-3 h-3 md:w-5 md:h-5 text-green-500"></PhotoIcon>
-                <p className="font-semibold text-xs sm:text-sm text-gray-500">Photo/video</p>
-              </button>
-              <button className="flex items-center justify-center md:mt-4  gap-x-1 hover:bg-slate-200 md:px-2 md:py-1">
-                <FaceSmileIcon className="w-3 h-3 md:w-5 md:h-5 text-yellow-300"></FaceSmileIcon>
-                <p className="font-semibold text-xs sm:text-sm text-gray-500">Feeling/activity</p>
-              </button>
-            </div>
-          </div>
-
+          <DialogNewPost />
           <ul>
             {user.posts.map((post) => {
               return (
