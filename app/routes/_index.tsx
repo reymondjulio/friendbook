@@ -2,7 +2,13 @@ import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
-import { EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
+import {
+  EllipsisHorizontalIcon,
+  XMarkIcon,
+  HandThumbUpIcon,
+  ChatBubbleLeftIcon,
+  ShareIcon,
+} from "@heroicons/react/24/solid";
 import { prisma } from "~/db.server";
 import { formatDate } from "~/utils/date";
 import DialogNewPost from "~/components/shared/dialog-new-post";
@@ -18,20 +24,36 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Friendbook" }, { name: "description", content: "Facebook clone made by Reymond Julio" }];
+  return [
+    { title: "Friendbook" },
+    { name: "description", content: "Facebook clone made by Reymond Julio" },
+  ];
 };
 
 export default function Index() {
   const { posts } = useLoaderData<typeof loader>();
+
   return (
     <div className="container mx-auto max-w-6xl min-h-screen p-6">
       <DialogNewPost />
       <ul>
         {posts.map((post) => {
           return (
-            <li className="max-w-2xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
+            <li
+              className="max-w-2xl mx-auto h-fit rounded bg-white mb-6"
+              key={post.id}
+            >
               <div className="flex gap-x-2 p-2">
-                <Link to={`/${post.user.username}`}> {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}</Link>
+                <Link to={`/${post.user.username}`}>
+                  {" "}
+                  {post.user?.avatarURL && (
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src={post.user?.avatarURL}
+                      alt={post.user.name}
+                    />
+                  )}
+                </Link>
 
                 <div className="mr-auto">
                   <p className="font-semibold text-sm">{post.user.name}</p>

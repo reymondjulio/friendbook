@@ -1,12 +1,39 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
-import type { LinksFunction } from "@remix-run/node";
-import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { json } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs } from "@remix-run/node";
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "@remix-run/react";
 
 import stylesheet from "~/tailwind.css";
 
 import Layout from "./components/layout/layout";
+import { authenticator } from "./services/auth.server";
+import { prisma } from "./db.server";
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: stylesheet }];
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheet },
+];
+
+export const loader = async ({ request }: LoaderArgs) => {
+  const userSession = await authenticator.isAuthenticated(request);
+  if (!userSession) {
+    return json({
+      userSession: null,
+      userDatabase: null,
+    });
+  }
+
+  const userDatabase = await prisma.user.findUnique({
+    where: { id: userSession.id },
+  });
+
+  return json({ userSession, userDatabase });
+};
 
 export default function App() {
   return (

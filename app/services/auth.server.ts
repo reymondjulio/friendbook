@@ -4,11 +4,11 @@ import { FormStrategy } from "remix-auth-form";
 import { prisma } from "~/db.server";
 import { sessionStorage } from "~/services/session.server";
 
-type User = {
+export type UserSession = {
   id: string;
 };
 
-export let authenticator = new Authenticator<User>(sessionStorage);
+export let authenticator = new Authenticator<UserSession>(sessionStorage);
 
 // Tell the Authenticator to use the form strategy
 authenticator.use(
