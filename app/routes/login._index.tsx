@@ -1,12 +1,13 @@
 import { Form } from "@remix-run/react";
+import { json, type ActionArgs } from "@remix-run/node";
+import bcrypt from "bcryptjs";
+
 import Label from "~/components/ui/label";
 import Input from "~/components/ui/input";
 import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
-import type { ActionArgs } from "@remix-run/node";
-import { prisma } from "~/db.server";
 
-import bcrypt from "bcrypt";
+import { prisma } from "~/db.server";
 
 export default function Login() {
   return (
@@ -42,7 +43,7 @@ export default function Login() {
               <Input
                 id="password"
                 name="password"
-                type="text"
+                type="password"
                 autoComplete="password"
                 required
                 placeholder="Password"
@@ -73,12 +74,16 @@ export async function action({ request }: ActionArgs) {
     where: { email },
     include: { password: true },
   });
-  if (!user?.password) return null;
+  if (!user?.password) {
+    return json({ message: "User not found" }, { status: 400 });
+  }
 
   const isPasswordCorrect = await bcrypt.compare(password, user.password.hash);
-  if (isPasswordCorrect) return null;
+  if (!isPasswordCorrect) {
+    return json({ message: "Password is incorrect" }, { status: 400 });
+  }
 
-  console.log({ user });
+  console.info({ user });
 
-  return null;
+  return json({ message: "Login success" });
 }
