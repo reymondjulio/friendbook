@@ -6,11 +6,15 @@ import { EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon,
 import { prisma } from "~/db.server";
 import { formatDate } from "~/utils/date";
 import DialogNewPost from "~/components/shared/dialog-new-post";
+import { authenticator } from "~/services/auth.server";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const posts = await prisma.post.findMany({
     include: {
       user: true,
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
 
@@ -81,8 +85,20 @@ export default function Index() {
 }
 
 export const action = async ({ request }: ActionArgs) => {
+  const userSession = await authenticator.isAuthenticated(request);
+  if (!userSession) {
+    return null;
+  }
   const formData = await request.formData();
   const message = String(formData.get("message"));
   console.log({ message });
+
+  const post = await prisma.post.create({
+    data: {
+      text: message,
+      userId: userSession.id,
+    },
+  });
+
   return null;
 };
