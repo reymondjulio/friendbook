@@ -1,5 +1,5 @@
 import { Form } from "@remix-run/react";
-import { json, type ActionArgs } from "@remix-run/node";
+import { type LoaderArgs, type ActionArgs, json } from "@remix-run/node";
 import bcrypt from "bcryptjs";
 
 import Label from "~/components/ui/label";
@@ -7,7 +7,14 @@ import Input from "~/components/ui/input";
 import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
 
+import { authenticator } from "~/services/auth.server";
 import { prisma } from "~/db.server";
+
+export async function loader({ request }: LoaderArgs) {
+  return await authenticator.isAuthenticated(request, {
+    successRedirect: "/",
+  });
+}
 
 export default function Login() {
   return (
@@ -65,7 +72,8 @@ export default function Login() {
 }
 
 export async function action({ request }: ActionArgs) {
-  const formData = await request.formData();
+  const clonedRequest = request.clone();
+  const formData = await clonedRequest.formData();
 
   const email = String(formData.get("email"));
   const password = String(formData.get("password"));
@@ -83,7 +91,8 @@ export async function action({ request }: ActionArgs) {
     return json({ message: "Password is incorrect" }, { status: 400 });
   }
 
-  console.info({ user });
-
-  return json({ message: "Login success" });
+  return await authenticator.authenticate("user-pass", request, {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  });
 }
