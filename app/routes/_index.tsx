@@ -34,15 +34,15 @@ export default function Index() {
       <ul>
         {posts.map((post) => {
           return (
-            <li className="max-w-2xl mx-auto h-fit rounded bg-white mb-6" key={post.id}>
-              <div className="flex gap-x-2 p-2">
-                <Link to={`/${post.user.username}`}> {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}</Link>
+            <li className="max-w-2xl mx-auto h-fit rounded-lg bg-white mb-4 px-4 pt-2" key={post.id}>
+              <div className="flex flex-wrap gap-x-2 gap-y-2 p-2">
+                <Link to={`/${post.user.username}`}> {post.user?.avatarURL && <img className="w-10 h-10 rounded-full basos-1/2" src={post.user?.avatarURL} alt={post.user.name} />}</Link>
 
                 <div className="mr-auto">
                   <p className="font-semibold text-sm">{post.user.name}</p>
                   <p className="text-sm">{formatDate(post.createdAt)}</p>
                 </div>
-                <div className="flex gap-x-2">
+                <div className="gap-x-2 hidden sm:block">
                   <button>
                     <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
                   </button>
@@ -52,28 +52,30 @@ export default function Index() {
                 </div>
               </div>
 
-              <p className="pl-3">{post.text}</p>
+              <p className="pl-2 mb-3">{post.text}</p>
 
-              <div className="flex justify-between p-4">
-                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+              <hr className="w-full" />
+
+              <div className="flex flex-wrap gap-y-1 sm:flex-row justify-between py-3">
+                <button className="flex gap-x-2 items-center justify-start hover:bg-slate-200 px-3 py-1">
                   <span>
-                    <HandThumbUpIcon className="w-5 h-5 text-slate-500"></HandThumbUpIcon>
+                    <HandThumbUpIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></HandThumbUpIcon>
                   </span>
-                  <p className="text-sm">Like</p>
+                  <p className="text-xs sm:text-sm">Like</p>
                 </button>
 
-                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                <button className="flex gap-x-2 items-center justify-start hover:bg-slate-200 px-3 py-1">
                   <span>
-                    <ChatBubbleLeftIcon className="w-5 h-5 text-slate-500"></ChatBubbleLeftIcon>
+                    <ChatBubbleLeftIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ChatBubbleLeftIcon>
                   </span>
-                  <p className="text-sm">Comment</p>
+                  <p className="text-xs sm:text-sm">Comment</p>
                 </button>
 
-                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-4">
+                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-3 py-1">
                   <span>
-                    <ShareIcon className="w-5 h-5 text-slate-500"></ShareIcon>
+                    <ShareIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ShareIcon>
                   </span>
-                  <p className="text-sm">Share</p>
+                  <p className="text-xs sm:text-sm">Share</p>
                 </button>
               </div>
             </li>
