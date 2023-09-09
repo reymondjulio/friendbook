@@ -68,7 +68,7 @@ export default function RouteComponent() {
     <div className="container mx-auto max-w-4xl min-h-screen flex flex-col items-start pb-4">
       {user.coverURL && <img className="w-full h-96 bg-cover object-cover rounded-md mb-4" src={user.coverURL} alt={user.name} />}
 
-      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row justify-center items-center px-4 py-6 bg-white mb-6">
+      <div className="container mx-auto max-w-4xl flex flex-col md:flex-row justify-center items-center px-4 py-6 bg-white mb-6 rounded-lg">
         {user.avatarURL && <img className="w-32 h-32 rounded-full bg-cover object-cover" src={user.avatarURL} alt={user.name} />}
         <div className="px-4 space-y-2 mb-4 md:mr-auto">
           <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">{user.name}</h3>
@@ -85,7 +85,7 @@ export default function RouteComponent() {
 
       <div className="container mx-auto max-w-4xl flex flex-col md:flex-row gap-x-4">
         <div className="flex flex-col gap-y-4 basis-1/2 mb-4 md:mb-0">
-          <div className="container max-w-full h-fit flex flex-col gap-y-4 px-4 py-6 text-center bg-white">
+          <div className="container max-w-full h-fit flex flex-col gap-y-4 px-4 py-6 text-center bg-white rounded-lg">
             <h1 className="text-black text-left text-xl font-bold">Intro</h1>
             <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add bio</div>
             <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add details</div>
@@ -93,7 +93,7 @@ export default function RouteComponent() {
             <div className="w-full h-auto text-gray-700 font-semibold bg-slate-200 text-md hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add featured</div>
           </div>
 
-          <div className="container max-w-full h-fit bg-white px-4 py-6">
+          <div className="container max-w-full h-fit bg-white px-4 py-4">
             <div className="flex justify-between items-start">
               <h1 className="text-black text-left text-xl font-bold mb-4">Photos</h1>
               <p className="text-blue-500 text-md cursor-pointer px-2 py-1 hover:bg-slate-200 rounded-lg">See all photos</p>
@@ -113,7 +113,7 @@ export default function RouteComponent() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-y-4 basis-2/3">
+        <div className="flex flex-col basis-2/3">
           <DialogNewPost />
           <ul>
             {user.posts.map((post) => {
