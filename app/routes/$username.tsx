@@ -9,6 +9,7 @@ import Input from "~/components/ui/input";
 import Label from "~/components/ui/label";
 import DialogNewPost from "~/components/shared/dialog-new-post";
 import { prisma } from "~/db.server";
+import { authenticator } from "~/services/auth.server";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const user = await prisma.user.findUnique({
@@ -170,15 +171,20 @@ export default function RouteComponent() {
   );
 }
 
-export async function action({ request }: ActionArgs) {
+export const action = async ({ request }: ActionArgs) => {
+  const userSession = await authenticator.isAuthenticated(request);
+  if (!userSession) return null;
+
   const formData = await request.formData();
+  const message = String(formData.get("message"));
 
-  const message = formData.get("message")?.toString();
-  if (!message) return null;
-
-  await prisma.post.create({
-    data: { text: message, user: { connect: { username: "reymond" } } },
+  const post = await prisma.post.create({
+    data: {
+      text: message,
+      userId: userSession.id,
+    },
   });
+  if (!post) return null;
 
   return null;
-}
+};
