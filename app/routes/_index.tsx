@@ -86,12 +86,10 @@ export default function Index() {
 
 export const action = async ({ request }: ActionArgs) => {
   const userSession = await authenticator.isAuthenticated(request);
-  if (!userSession) {
-    return null;
-  }
+  if (!userSession) return null;
+
   const formData = await request.formData();
   const message = String(formData.get("message"));
-  console.log({ message });
 
   const post = await prisma.post.create({
     data: {
@@ -99,6 +97,7 @@ export const action = async ({ request }: ActionArgs) => {
       userId: userSession.id,
     },
   });
+  if (!post) return null;
 
   return null;
 };
