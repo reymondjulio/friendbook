@@ -1,7 +1,7 @@
 import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon, EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
 
 import { json, type LoaderArgs, type ActionArgs } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, Link, useLoaderData } from "@remix-run/react";
 
 import Button from "~/components/ui/button";
 import ButtonLink from "~/components/ui/button-link";
@@ -10,6 +10,7 @@ import Label from "~/components/ui/label";
 import DialogNewPost from "~/components/shared/dialog-new-post";
 import { prisma } from "~/db.server";
 import { authenticator } from "~/services/auth.server";
+import { formatDate } from "~/utils/date";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const user = await prisma.user.findUnique({
@@ -69,9 +70,12 @@ export default function RouteComponent() {
       {user.coverURL && <img className="w-full h-96 bg-cover object-cover rounded-md mb-4" src={user.coverURL} alt={user.name} />}
 
       <div className="container mx-auto max-w-4xl flex flex-col md:flex-row justify-center items-center px-4 py-6 bg-white mb-6 rounded-lg">
-        {user.avatarURL && <img className="w-32 h-32 rounded-full bg-cover object-cover" src={user.avatarURL} alt={user.name} />}
+        <Link to={`/${user.username}`}>{user.avatarURL && <img className="w-32 h-32 rounded-full object-cover overflow-hidden bg-white hover:bg-opacity-80" src={user.avatarURL} alt={user.name} />}</Link>
+
         <div className="px-4 space-y-2 mb-4 md:mr-auto">
-          <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">{user.name}</h3>
+          <Link to={`/${user.username}`}>
+            <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">{user.name}</h3>
+          </Link>
         </div>
         <div className="flex gap-x-2 h-8 self-center">
           <Button variant="tertiary">
@@ -118,12 +122,16 @@ export default function RouteComponent() {
           <ul>
             {user.posts.map((post) => {
               return (
-                <li className="flex flex-col mb-4 max-w-4xl mx-auto h-fit rounded bg-white p-4" key={post.id}>
+                <li className="flex flex-col mb-4 max-w-4xl mx-auto h-fit rounded-lg bg-white p-4" key={post.id}>
                   <div className="flex gap-x-2 items-start mb-2 md:p-2">
-                    {post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}
+                    <Link to={`/${post.user.username}`}>{post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}</Link>
+
                     <div className="mr-auto">
-                      <p className="font-semibold text-sm">{post.user.name}</p>
-                      <p className="text-sm">{post.createdAt}</p>
+                      <Link to={`/${post.user.username}`}>
+                        <p className="font-semibold text-sm">{post.user.name}</p>
+                      </Link>
+
+                      <p className="text-sm">{formatDate(post.createdAt)}</p>
                     </div>
                     <div className="flex gap-x-2">
                       <button>
@@ -140,21 +148,21 @@ export default function RouteComponent() {
                   <hr className="mb-4" />
 
                   <div className="flex justify-between items-center">
-                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
+                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-3 py-1 rounded-lg">
                       <span>
                         <HandThumbUpIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></HandThumbUpIcon>
                       </span>
                       <p className="text-xs">Like</p>
                     </button>
 
-                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
+                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-3 py-1 rounded-lg">
                       <span>
                         <ChatBubbleLeftIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ChatBubbleLeftIcon>
                       </span>
                       <p className="text-xs">Comment</p>
                     </button>
 
-                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-4">
+                    <button className="flex gap-x-1 items-center hover:bg-slate-200 px-3 py-1 rounded-lg">
                       <span>
                         <ShareIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ShareIcon>
                       </span>
