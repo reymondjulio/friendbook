@@ -9,15 +9,9 @@ export default function SignUp() {
         <h2 className="mt-2 text-center text-2xl sm:text-3xl font-semibold text-gray-700">Create a new account</h2>
         <form className="mt-2 space-y-4 p-4">
           <div className="rounded-md shadow-sm space-y-4">
-            <div className="flex gap-x-2">
-              <div className="space-y-1 basis-1/2">
-                <Label htmlFor="firstname">First name:</Label>
-                <Input id="firstname" name="firstname" type="text" placeholder="First name" required></Input>
-              </div>
-              <div className="space-y-1 basis-1/2">
-                <Label htmlFor="lastname">Last name:</Label>
-                <Input id="lastname" name="lastname" type="text" placeholder="Last name" required></Input>
-              </div>
+            <div className="space-y-1">
+              <Label htmlFor="fullname">Full name:</Label>
+              <Input id="fullname" name="fullname" type="text" placeholder="Full name" required></Input>
             </div>
 
             <div className="space-y-1">
