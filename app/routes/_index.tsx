@@ -36,10 +36,22 @@ export default function Index() {
           return (
             <li className="max-w-2xl mx-auto h-fit rounded-lg bg-white mb-4 px-4 pt-2" key={post.id}>
               <div className="flex flex-wrap gap-x-2 gap-y-2 p-2">
-                <Link to={`/${post.user.username}`}> {post.user?.avatarURL && <img className="w-10 h-10 rounded-full basos-1/2" src={post.user?.avatarURL} alt={post.user.name} />}</Link>
+                <Link to={`/${post.user.username}`}>
+                  {post.user?.avatarURL && (
+                    <img
+                      className="w-10 h-10 rounded-full object-cover overflow-hidden bg-white 
+                 hover:bg-opacity-80"
+                      src={post.user?.avatarURL}
+                      alt={post.user.name}
+                    />
+                  )}
+                </Link>
 
                 <div className="mr-auto">
-                  <p className="font-semibold text-sm">{post.user.name}</p>
+                  <Link to={`/${post.user.username}`}>
+                    <p className="font-semibold text-sm">{post.user.name}</p>
+                  </Link>
+
                   <p className="text-sm">{formatDate(post.createdAt)}</p>
                 </div>
                 <div className="gap-x-2 hidden sm:block">
@@ -57,21 +69,21 @@ export default function Index() {
               <hr className="w-full" />
 
               <div className="flex flex-wrap gap-y-1 sm:flex-row justify-between py-3">
-                <button className="flex gap-x-2 items-center justify-start hover:bg-slate-200 px-3 py-1">
+                <button className="flex gap-x-2 items-center justify-start hover:bg-slate-200 px-3 py-1 rounded-lg">
                   <span>
                     <HandThumbUpIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></HandThumbUpIcon>
                   </span>
                   <p className="text-xs sm:text-sm">Like</p>
                 </button>
 
-                <button className="flex gap-x-2 items-center justify-start hover:bg-slate-200 px-3 py-1">
+                <button className="flex gap-x-2 items-center justify-start hover:bg-slate-200 px-3 py-1 rounded-lg">
                   <span>
                     <ChatBubbleLeftIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ChatBubbleLeftIcon>
                   </span>
                   <p className="text-xs sm:text-sm">Comment</p>
                 </button>
 
-                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-3 py-1">
+                <button className="flex gap-x-2 items-center hover:bg-slate-200 px-3 py-1 rounded-lg">
                   <span>
                     <ShareIcon className="w-3 h-3 md:w-5 md:h-5 text-slate-500"></ShareIcon>
                   </span>
