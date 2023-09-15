@@ -52,15 +52,15 @@ export default function DialogNewPost() {
       <hr className="mb-4" />
 
       <div className="flex flex-wrap justify-between md:pb-2 items-center gap-x-1 gap-y-2">
-        <button className="flex items-center justify-center gap-x-2 hover:bg-slate-200 md:px-2 md:py-1">
+        <button className="flex items-center justify-center gap-x-2 hover:bg-slate-200 md:px-2 md:py-1 rounded-lg">
           <VideoCameraIcon className="w-3 h-3 md:w-5 md:h-5 text-red-500"></VideoCameraIcon>
           <p className="font-semibold text-xs sm:text-sm text-gray-500">Live video</p>
         </button>
-        <button className="flex items-center justify-center gap-x-2 hover:bg-slate-200 md:px-2 md:py-1">
+        <button className="flex items-center justify-center gap-x-2 hover:bg-slate-200 md:px-2 md:py-1 rounded-lg">
           <PhotoIcon className="w-3 h-3 md:w-5 md:h-5 text-green-500"></PhotoIcon>
           <p className="font-semibold text-xs sm:text-sm text-gray-500">Photo/video</p>
         </button>
-        <button className="flex items-center justify-center gap-x-2 hover:bg-slate-200 md:px-2 md:py-1">
+        <button className="flex items-center justify-center gap-x-2 hover:bg-slate-200 md:px-2 md:py-1 rounded-lg">
           <FaceSmileIcon className="w-3 h-3 md:w-5 md:h-5 text-yellow-300"></FaceSmileIcon>
           <p className="font-semibold text-xs sm:text-sm text-gray-500">Feeling/activity</p>
         </button>
