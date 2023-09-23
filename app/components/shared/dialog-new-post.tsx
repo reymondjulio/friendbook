@@ -1,9 +1,18 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { Form } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import Button from "~/components/ui/button";
 import { FaceSmileIcon, PhotoIcon, VideoCameraIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useRootLoaderData } from "~/hooks/use-root-loader-data";
+import type { LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { prisma } from "~/db.server";
+
+export const loader = async ({ request }: LoaderArgs) => {
+  const users = await prisma.user.findMany();
+
+  return json({ users });
+};
 
 export default function DialogNewPost() {
   const { userDatabase } = useRootLoaderData();
@@ -15,7 +24,8 @@ export default function DialogNewPost() {
   return (
     <div className="container mx-auto flex flex-col justify-center max-w-2xl bg-white h-fit px-5 pt-5 pb-4 md:pb-0 mb-6 sm:mb-4 rounded-lg">
       <div className="flex mb-4 items-center">
-        {userDatabase.avatarURL && <img className="w-12 h-12 rounded-full bg-cover mr-2" src={userDatabase.avatarURL} alt={userDatabase.name} />}
+        <Link to={`/${userDatabase.username}`}> {userDatabase.avatarURL && <img className="w-12 h-12 rounded-full bg-cover mr-2" src={userDatabase.avatarURL} alt={userDatabase.name} />}</Link>
+
         <Dialog.Root>
           <Dialog.Trigger asChild>
             <button className="w-full text-sm md:text-md lg:text-lg hover:bg-slate-100 rounded-full text-gray-600 p-4 text-left bg-slate-200 font-semibold leading-none focus:outline-none">What's on your mind?</button>
