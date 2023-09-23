@@ -198,13 +198,25 @@ export default function RouteComponent() {
 
                       <p className="text-sm">{formatDate(post.createdAt)}</p>
                     </div>
-                    <div className="flex gap-x-2">
+                    <div className="username-actions flex gap-x-2">
                       <button>
                         <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
                       </button>
-                      <button>
-                        <XMarkIcon className="w-6 h-6"></XMarkIcon>
-                      </button>
+                      <Form method="DELETE">
+                        <input
+                          type="hidden"
+                          name="_action"
+                          defaultValue="delete-post-by-id"
+                        />
+                        <input
+                          type="hidden"
+                          name="postId"
+                          defaultValue={post.id}
+                        />
+                        <button type="submit">
+                          <XMarkIcon className="w-6 h-6"></XMarkIcon>
+                        </button>
+                      </Form>
                     </div>
                   </div>
 
@@ -284,16 +296,33 @@ export const action = async ({ request }: ActionArgs) => {
   const userSession = await authenticator.isAuthenticated(request);
   if (!userSession) return null;
 
-  const formData = await request.formData();
-  const message = String(formData.get("message"));
+  // if params.username !== userDatabase.username
+  // return null
 
-  const post = await prisma.post.create({
-    data: {
-      text: message,
-      userId: userSession.id,
-    },
-  });
-  if (!post) return null;
+  const formData = await request.formData();
+  const _action = String(formData.get("_action"));
+
+  console.log({ _action });
+
+  if (_action === "create-post") {
+    const message = String(formData.get("message"));
+
+    const post = await prisma.post.create({
+      data: {
+        text: message,
+        userId: userSession.id,
+      },
+    });
+    if (!post) return null;
+  }
+
+  if (_action === "delete-post-by-id") {
+    const postId = String(formData.get("postId"));
+    const post = await prisma.post.delete({
+      where: { id: postId },
+    });
+    if (!post) return null;
+  }
 
   return null;
 };

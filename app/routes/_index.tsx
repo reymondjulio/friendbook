@@ -2,7 +2,13 @@ import type { LoaderArgs, ActionArgs, V2_MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 
-import { EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
+import {
+  EllipsisHorizontalIcon,
+  XMarkIcon,
+  HandThumbUpIcon,
+  ChatBubbleLeftIcon,
+  ShareIcon,
+} from "@heroicons/react/24/solid";
 import { prisma } from "~/db.server";
 import { formatDate } from "~/utils/date";
 import DialogNewPost from "~/components/shared/dialog-new-post";
@@ -22,7 +28,10 @@ export const loader = async ({ request }: LoaderArgs) => {
 };
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Friendbook" }, { name: "description", content: "Facebook clone made by Reymond Julio" }];
+  return [
+    { title: "Friendbook" },
+    { name: "description", content: "Facebook clone made by Reymond Julio" },
+  ];
 };
 
 export default function Index() {
@@ -31,10 +40,17 @@ export default function Index() {
   return (
     <div className="container mx-auto max-w-6xl min-h-screen p-6">
       <DialogNewPost />
+
       <ul>
         {posts.map((post) => {
+          // TODO
+          // const isSameUser = post.user.username === userDatabase?.username;
+
           return (
-            <li className="max-w-2xl mx-auto h-fit rounded-lg bg-white mb-4 px-4 pt-2" key={post.id}>
+            <li
+              className="max-w-2xl mx-auto h-fit rounded-lg bg-white mb-4 px-4 pt-2"
+              key={post.id}
+            >
               <div className="flex flex-wrap gap-x-2 gap-y-2 p-2">
                 <Link to={`/${post.user.username}`}>
                   {post.user?.avatarURL && (
