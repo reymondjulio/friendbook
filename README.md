@@ -2,6 +2,15 @@
 
 - [Remix Docs](https://remix.run/docs)
 
+## Features
+
+- Login
+- ...
+
+Upcoming:
+
+- ...
+
 ## Tech Stack
 
 - HTML, CSS, JavaScript/TypeScript
