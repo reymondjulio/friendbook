@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { Form, Link } from "@remix-run/react";
+import { Link, useFetcher } from "@remix-run/react";
 import Button from "~/components/ui/button";
 import {
   FaceSmileIcon,
@@ -12,6 +12,7 @@ import { useRootLoaderData } from "~/hooks/use-root-loader-data";
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { prisma } from "~/db.server";
+import { useState } from "react";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const users = await prisma.user.findMany();
@@ -21,6 +22,8 @@ export const loader = async ({ request }: LoaderArgs) => {
 
 export default function DialogNewPost() {
   const { userDatabase } = useRootLoaderData();
+  const [open, setOpen] = useState(false);
+  const fetcherNewPost = useFetcher();
 
   if (!userDatabase) {
     return null;
@@ -40,7 +43,7 @@ export default function DialogNewPost() {
           )}
         </Link>
 
-        <Dialog.Root>
+        <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger asChild>
             <button className="w-full text-sm md:text-md lg:text-lg hover:bg-slate-100 rounded-full text-gray-600 p-4 text-left bg-slate-200 font-semibold leading-none focus:outline-none">
               What's on your mind?
@@ -49,7 +52,16 @@ export default function DialogNewPost() {
           <Dialog.Portal>
             <Dialog.Overlay className="bg-slate-200 bg-opacity-70 data-[state=open]:animate-overlayShow fixed inset-0" />
             <Dialog.Content className="data-[state=open]:animate-contentShow fixed top-1/2 left-1/2 max-h-[85vh] w-[90vw] max-w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
-              <Form className="w-full" method="POST">
+              <fetcherNewPost.Form
+                method="POST"
+                className="w-full"
+                onSubmit={(event) => {
+                  fetcherNewPost.submit(event.currentTarget.form, {
+                    method: "POST",
+                  });
+                  setOpen(false);
+                }}
+              >
                 <Dialog.Title className="text-center mb-4 text-lg font-medium">
                   Create post
                 </Dialog.Title>
@@ -72,7 +84,7 @@ export default function DialogNewPost() {
                     name="_action"
                     defaultValue="create-post"
                   />
-                  <Button variant="secondary" type="submit">
+                  <Button type="submit" variant="secondary">
                     Post
                   </Button>
                 </div>
@@ -84,7 +96,7 @@ export default function DialogNewPost() {
                     <XMarkIcon className="w-6 h-6 text-gray-500"></XMarkIcon>
                   </button>
                 </Dialog.Close>
-              </Form>
+              </fetcherNewPost.Form>
             </Dialog.Content>
           </Dialog.Portal>
         </Dialog.Root>
