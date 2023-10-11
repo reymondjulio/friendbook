@@ -1,6 +1,6 @@
 import type { LoaderArgs, ActionArgs, V2_MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Form, Link, useLoaderData } from "@remix-run/react";
 
 import {
   EllipsisHorizontalIcon,
@@ -13,6 +13,14 @@ import { prisma } from "~/db.server";
 import { formatDate } from "~/utils/date";
 import DialogNewPost from "~/components/shared/dialog-new-post";
 import { authenticator } from "~/services/auth.server";
+import { useRootLoaderData } from "~/hooks";
+
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: "Friendbook" },
+    { name: "description", content: "Facebook clone made by Reymond Julio" },
+  ];
+};
 
 export const loader = async ({ request }: LoaderArgs) => {
   const posts = await prisma.post.findMany({
@@ -27,14 +35,8 @@ export const loader = async ({ request }: LoaderArgs) => {
   return json({ posts });
 };
 
-export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "Friendbook" },
-    { name: "description", content: "Facebook clone made by Reymond Julio" },
-  ];
-};
-
 export default function Index() {
+  const { userDatabase } = useRootLoaderData();
   const { posts } = useLoaderData<typeof loader>();
 
   return (
@@ -43,8 +45,9 @@ export default function Index() {
 
       <ul>
         {posts.map((post) => {
-          // TODO
-          // const isSameUser = post.user.username === userDatabase?.username;
+          const isPostOwner = post.user.username === userDatabase?.username;
+
+          console.log(isPostOwner, post, userDatabase);
 
           return (
             <li
@@ -70,14 +73,28 @@ export default function Index() {
 
                   <p className="text-sm">{formatDate(post.createdAt)}</p>
                 </div>
-                <div className="gap-x-2 hidden sm:block">
-                  <button>
-                    <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
-                  </button>
-                  <button>
-                    <XMarkIcon className="w-6 h-6"></XMarkIcon>
-                  </button>
-                </div>
+                {isPostOwner && (
+                  <div className="flex gap-2 items-center">
+                    <button>
+                      <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
+                    </button>
+                    <Form method="DELETE">
+                      <input
+                        type="hidden"
+                        name="_action"
+                        defaultValue="delete-post-by-id"
+                      />
+                      <input
+                        type="hidden"
+                        name="postId"
+                        defaultValue={post.id}
+                      />
+                      <button type="submit">
+                        <XMarkIcon className="w-6 h-6"></XMarkIcon>
+                      </button>
+                    </Form>
+                  </div>
+                )}
               </div>
 
               <p className="pl-2 mb-3">{post.text}</p>
@@ -119,15 +136,36 @@ export const action = async ({ request }: ActionArgs) => {
   if (!userSession) return null;
 
   const formData = await request.formData();
-  const message = String(formData.get("message"));
 
-  const post = await prisma.post.create({
-    data: {
-      text: message,
-      userId: userSession.id,
-    },
-  });
-  if (!post) return null;
+  const _action = String(formData.get("_action"));
+
+  // Create post
+  if (_action === "create-post") {
+    const message = String(formData.get("message"));
+    const createdPost = await prisma.post.create({
+      data: { text: message, userId: userSession.id },
+    });
+    if (!createdPost) return null;
+  }
+
+  // Delete post by ID
+  if (_action === "delete-post-by-id") {
+    const postId = String(formData.get("postId"));
+
+    const foundPost = await prisma.post.findUnique({
+      where: { id: postId, userId: userSession.id },
+      include: { user: { select: { id: true } } },
+    });
+    if (!foundPost) return null;
+
+    const isPostOwner = foundPost.user.id === userSession.id;
+    if (!isPostOwner) return null;
+
+    const deletedPost = await prisma.post.delete({
+      where: { id: postId, userId: userSession.id },
+    });
+    if (!deletedPost) return null;
+  }
 
   return null;
 };
