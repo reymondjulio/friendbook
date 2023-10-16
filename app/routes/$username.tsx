@@ -1,13 +1,4 @@
-import {
-  UserPlusIcon,
-  ChatBubbleLeftRightIcon,
-  InformationCircleIcon,
-  EllipsisHorizontalIcon,
-  XMarkIcon,
-  HandThumbUpIcon,
-  ChatBubbleLeftIcon,
-  ShareIcon,
-} from "@heroicons/react/24/solid";
+import { UserPlusIcon, ChatBubbleLeftRightIcon, InformationCircleIcon, EllipsisHorizontalIcon, XMarkIcon, HandThumbUpIcon, ChatBubbleLeftIcon, ShareIcon } from "@heroicons/react/24/solid";
 
 import { json, type LoaderArgs, type ActionArgs } from "@remix-run/node";
 import { Form, Link, useLoaderData } from "@remix-run/react";
@@ -57,31 +48,14 @@ export default function RouteComponent() {
 
         <div className="container mx-auto max-w-2xl bg-white">
           <h1 className="text-center pt-6 text-2xl">Log in to Facebook</h1>
-          <Form
-            className="flex flex-col px-8 pt-8 pb-4 items-center"
-            method="POST"
-          >
+          <Form className="flex flex-col px-8 pt-8 pb-4 items-center" method="POST">
             <div className="w-full mb-4">
               <Label htmlFor="email" />
-              <Input
-                id="email"
-                name="email"
-                type="text"
-                autoComplete="email"
-                required
-                placeholder="Email or Phone Number"
-              />
+              <Input id="email" name="email" type="text" autoComplete="email" required placeholder="Email or Phone Number" />
             </div>
             <div className="w-full mb-4">
               <Label htmlFor="password" />
-              <Input
-                id="password"
-                name="password"
-                type="text"
-                autoComplete="password"
-                required
-                placeholder="Password"
-              />
+              <Input id="password" name="password" type="text" autoComplete="password" required placeholder="Password" />
             </div>
 
             <Button type="submit">Log in</Button>
@@ -98,13 +72,7 @@ export default function RouteComponent() {
 
   return (
     <div className="container mx-auto max-w-4xl min-h-screen flex flex-col items-start pb-4">
-      {user.coverURL && (
-        <img
-          className="w-full h-96 bg-cover object-cover rounded-md mb-4"
-          src={user.coverURL}
-          alt={user.name}
-        />
-      )}
+      {user.coverURL && <img className="w-full h-96 bg-cover object-cover rounded-md mb-4" src={user.coverURL} alt={user.name} />}
 
       <UsernameMainbar />
 
@@ -112,58 +80,28 @@ export default function RouteComponent() {
         <div className="flex flex-col gap-y-4 basis-1/2 mb-4 md:mb-0">
           <div className="container max-w-full h-fit flex flex-col gap-y-4 px-4 py-6 text-center bg-white rounded-lg">
             <h1 className="text-black text-left text-xl font-bold">Intro</h1>
-            <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">
-              Add bio
-            </div>
-            <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">
-              Add details
-            </div>
-            <div className="w-full h-auto bg-slate-200 text-gray-700 font-semibold text-md hover:bg-slate-100 rounded-lg py-1 cursor-pointer">
-              Add hobbies
-            </div>
-            <div className="w-full h-auto text-gray-700 font-semibold bg-slate-200 text-md hover:bg-slate-100 rounded-lg py-1 cursor-pointer">
-              Add featured
-            </div>
+            <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add bio</div>
+            <div className="w-full h-auto text-gray-700 font-semibold text-md bg-slate-200 hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add details</div>
+            <div className="w-full h-auto bg-slate-200 text-gray-700 font-semibold text-md hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add hobbies</div>
+            <div className="w-full h-auto text-gray-700 font-semibold bg-slate-200 text-md hover:bg-slate-100 rounded-lg py-1 cursor-pointer">Add featured</div>
           </div>
 
           <div className="container max-w-full h-fit bg-white px-4 py-4">
             <div className="flex justify-between items-start">
-              <h1 className="text-black text-left text-xl font-bold mb-4">
-                Photos
-              </h1>
-              <p className="text-blue-500 text-md cursor-pointer px-2 py-1 hover:bg-slate-200 rounded-lg">
-                See all photos
-              </p>
+              <h1 className="text-black text-left text-xl font-bold mb-4">Photos</h1>
+              <p className="text-blue-500 text-md cursor-pointer px-2 py-1 hover:bg-slate-200 rounded-lg">See all photos</p>
             </div>
 
             <div className="grid grid-cols-3 gap-2">
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer rounded-l-lg p-1">
-                1
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">
-                2
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">
-                3
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-l-lg p-1">
-                4
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">
-                5
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">
-                6
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-l-lg p-1">
-                7
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">
-                8
-              </div>
-              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">
-                9
-              </div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer rounded-l-lg p-1">1</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">2</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">3</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-l-lg p-1">4</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">5</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">6</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-l-lg p-1">7</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  p-1">8</div>
+              <div className="w-full h-24 bg-slate-200 hover:bg-slate-100 cursor-pointer  rounded-r-lg p-1">9</div>
             </div>
           </div>
         </div>
@@ -174,26 +112,13 @@ export default function RouteComponent() {
           <ul>
             {user.posts.map((post) => {
               return (
-                <li
-                  className="flex flex-col mb-4 max-w-4xl mx-auto h-fit rounded-lg bg-white p-4"
-                  key={post.id}
-                >
+                <li className="flex flex-col mb-4 max-w-4xl mx-auto h-fit rounded-lg bg-white p-4" key={post.id}>
                   <div className="flex gap-x-2 items-start mb-2 md:p-2">
-                    <Link to={`/${post.user.username}`}>
-                      {post.user?.avatarURL && (
-                        <img
-                          className="w-10 h-10 rounded-full"
-                          src={post.user?.avatarURL}
-                          alt={post.user.name}
-                        />
-                      )}
-                    </Link>
+                    <Link to={`/${post.user.username}`}>{post.user?.avatarURL && <img className="w-10 h-10 rounded-full" src={post.user?.avatarURL} alt={post.user.name} />}</Link>
 
                     <div className="mr-auto">
                       <Link to={`/${post.user.username}`}>
-                        <p className="font-semibold text-sm">
-                          {post.user.name}
-                        </p>
+                        <p className="font-semibold text-sm">{post.user.name}</p>
                       </Link>
 
                       <p className="text-sm">{formatDate(post.createdAt)}</p>
@@ -203,16 +128,8 @@ export default function RouteComponent() {
                         <EllipsisHorizontalIcon className="w-6 h-6"></EllipsisHorizontalIcon>
                       </button>
                       <Form method="DELETE">
-                        <input
-                          type="hidden"
-                          name="_action"
-                          defaultValue="delete-post-by-id"
-                        />
-                        <input
-                          type="hidden"
-                          name="postId"
-                          defaultValue={post.id}
-                        />
+                        <input type="hidden" name="_action" defaultValue="delete-post-by-id" />
+                        <input type="hidden" name="postId" defaultValue={post.id} />
                         <button type="submit">
                           <XMarkIcon className="w-6 h-6"></XMarkIcon>
                         </button>
@@ -263,21 +180,11 @@ function UsernameMainbar() {
 
   return (
     <div className="container mx-auto max-w-4xl flex flex-col md:flex-row justify-center items-center px-4 py-6 bg-white mb-6 rounded-lg">
-      <Link to={`/${user.username}`}>
-        {user.avatarURL && (
-          <img
-            className="w-32 h-32 rounded-full object-cover overflow-hidden bg-white hover:bg-opacity-80"
-            src={user.avatarURL}
-            alt={user.name}
-          />
-        )}
-      </Link>
+      <Link to={`/${user.username}`}>{user.avatarURL && <img className="w-32 h-32 rounded-full object-cover overflow-hidden bg-white hover:bg-opacity-80" src={user.avatarURL} alt={user.name} />}</Link>
 
       <div className="px-4 space-y-2 mb-4 md:mr-auto">
         <Link to={`/${user.username}`}>
-          <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">
-            {user.name}
-          </h3>
+          <h3 className=" text-2xl md:text-3xl text-center font-bold text-black">{user.name}</h3>
         </Link>
       </div>
       <div className="flex gap-x-2 h-8 self-center">
@@ -307,21 +214,21 @@ export const action = async ({ request }: ActionArgs) => {
   if (_action === "create-post") {
     const message = String(formData.get("message"));
 
-    const post = await prisma.post.create({
+    const createdPost = await prisma.post.create({
       data: {
         text: message,
         userId: userSession.id,
       },
     });
-    if (!post) return null;
+    if (!createdPost) return null;
   }
 
   if (_action === "delete-post-by-id") {
     const postId = String(formData.get("postId"));
-    const post = await prisma.post.delete({
+    const foundPost = await prisma.post.delete({
       where: { id: postId },
     });
-    if (!post) return null;
+    if (!foundPost) return null;
   }
 
   return null;
